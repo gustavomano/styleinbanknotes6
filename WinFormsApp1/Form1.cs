@@ -11,7 +11,7 @@ namespace WinFormsApp1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -20,6 +20,11 @@ namespace WinFormsApp1
             this.Visible = false;
             frm.ShowDialog();
             this.Visible = true;
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
