@@ -63,6 +63,26 @@ namespace styleinbanknotes.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_tela_2024_10_16_115411 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de tela 2024-10-16 115411", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cc {
+            get {
+                object obj = ResourceManager.GetObject("cc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Design_sem_nome__1_ {
             get {
                 object obj = ResourceManager.GetObject("Design sem nome (1)", resourceCulture);
@@ -76,6 +96,16 @@ namespace styleinbanknotes.Properties {
         internal static System.Drawing.Bitmap logo_png {
             get {
                 object obj = ResourceManager.GetObject("logo.png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap telacc {
+            get {
+                object obj = ResourceManager.GetObject("telacc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

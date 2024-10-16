@@ -83,11 +83,11 @@
             bTConfirmar.BackColor = Color.FromArgb(255, 128, 0);
             bTConfirmar.Cursor = Cursors.Hand;
             bTConfirmar.FlatStyle = FlatStyle.Popup;
-            bTConfirmar.Font = new Font("Showcard Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bTConfirmar.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bTConfirmar.ForeColor = SystemColors.ControlText;
-            bTConfirmar.Location = new Point(627, 680);
+            bTConfirmar.Location = new Point(843, 691);
             bTConfirmar.Name = "bTConfirmar";
-            bTConfirmar.Size = new Size(97, 23);
+            bTConfirmar.Size = new Size(91, 25);
             bTConfirmar.TabIndex = 4;
             bTConfirmar.Text = "CONFIRMAR\r\n";
             bTConfirmar.UseVisualStyleBackColor = false;
