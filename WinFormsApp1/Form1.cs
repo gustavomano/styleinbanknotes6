@@ -1,3 +1,4 @@
+using styleinbanknotes;
 using System.Security.Cryptography;
 
 namespace WinFormsApp1
@@ -16,7 +17,7 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Telalogin frm = new Telalogin();
+            telacc frm = new telacc();
             this.Visible = false;
             frm.ShowDialog();
             this.Visible = true;
@@ -24,6 +25,11 @@ namespace WinFormsApp1
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
