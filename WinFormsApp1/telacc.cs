@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace styleinbanknotes
 {
+
     public partial class telacc : Form
     {
         public telacc()
@@ -23,7 +24,7 @@ namespace styleinbanknotes
             InitializeComponent();
         }
 
-
+        string connectionString = "Server=sqlexpress;Database=sbn;User Id=aluno;Password=aluno;";
 
         private void telacc_Load(object sender, EventArgs e)
         {
@@ -49,25 +50,34 @@ namespace styleinbanknotes
 
             string email = txtEmail.Text.Trim();
 
+
+            string senha = txtSenha.Text.Trim();
+
             using (SqlConnection cnn = new SqlConnection(connectionString))
             {
                 cnn.Open();
 
-                string sql = "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email";
+                // Verifica se existe usuário com email e senha combinando
+                string sqlLogin = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email AND Senha = @Senha";
 
-                using (SqlCommand cmd = new SqlCommand(sql, cnn))
+                using (SqlCommand cmd = new SqlCommand(sqlLogin, cnn))
                 {
                     cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Senha", senha);
 
                     int count = (int)cmd.ExecuteScalar();
 
                     if (count > 0)
                     {
-                        MessageBox.Show("Cadastro já existe com esse email!");
+                        MessageBox.Show("Login realizado com sucesso!");
+                        TelaPrincipal frm = new TelaPrincipal();
+                        this.Visible = false;
+                        frm.ShowDialog();
+                        frm.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Email disponível para cadastro.");
+                        MessageBox.Show("E-mail ou senha incorretos.");
                     }
                 }
             }

@@ -19,6 +19,7 @@ namespace WinFormsApp1
         {
             InitializeComponent();
         }
+        string connectionString = "Server=sqlexpress;Database=sbn;User Id=aluno;Password=aluno;";
 
         private void Telalogin_Load(object sender, EventArgs e)
         {
@@ -55,12 +56,12 @@ namespace WinFormsApp1
                 return;
             }
 
-            using (SqlConnection cnn = new SqlConnection(connetionString))
+            using (SqlConnection cnn = new SqlConnection(connectionString))
             {
                 cnn.Open();
 
                 // Primeiro verifica se o email já existe
-                string sqlVerifica = "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email";
+                string sqlVerifica = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email";
 
                 using (SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, cnn))
                 {
@@ -75,14 +76,14 @@ namespace WinFormsApp1
                 }
 
                 // Se não existe, insere o cadastro
-                string sqlInsert = "INSERT INTO Usuarios (Nome, Email, Senha) VALUES (@Nome, @Email, @Senha)";
+                string sqlInsert = "INSERT INTO cadastro (Nome, Email, Senha) VALUES (@Nome, @Email, @Senha)";
 
                 using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, cnn))
                 {
                     cmdInsert.Parameters.AddWithValue("@Nome", nome);
                     cmdInsert.Parameters.AddWithValue("@Email", email);
                     cmdInsert.Parameters.AddWithValue("@Senha", senha);
-
+                   
                     int linhasAfetadas = cmdInsert.ExecuteNonQuery();
 
                     if (linhasAfetadas > 0)

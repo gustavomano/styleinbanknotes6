@@ -16,6 +16,11 @@ namespace styleinbanknotes
             InitializeComponent();
         }
 
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
+
         // Agora você pode usar 'connectionString' em qualquer método desse Form
     }
 }
