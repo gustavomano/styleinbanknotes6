@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Telalogin));
             pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtNome = new TextBox();
+            txtEmail = new TextBox();
+            txtSenha = new TextBox();
             bTConfirmar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,34 +48,34 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.BackColor = SystemColors.MenuText;
-            textBox1.ForeColor = SystemColors.Window;
-            textBox1.Location = new Point(518, 402);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(185, 23);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtNome.BackColor = SystemColors.MenuText;
+            txtNome.ForeColor = SystemColors.Window;
+            txtNome.Location = new Point(518, 402);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(185, 23);
+            txtNome.TabIndex = 1;
+            txtNome.TextChanged += textBox1_TextChanged;
             // 
-            // textBox2
+            // txtEmail
             // 
-            textBox2.BackColor = SystemColors.MenuText;
-            textBox2.ForeColor = SystemColors.Window;
-            textBox2.Location = new Point(540, 462);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(185, 23);
-            textBox2.TabIndex = 2;
-            textBox2.TextChanged += textBox2_TextChanged;
+            txtEmail.BackColor = SystemColors.MenuText;
+            txtEmail.ForeColor = SystemColors.Window;
+            txtEmail.Location = new Point(540, 462);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(185, 23);
+            txtEmail.TabIndex = 2;
+            txtEmail.TextChanged += textBox2_TextChanged;
             // 
-            // textBox3
+            // txtSenha
             // 
-            textBox3.BackColor = SystemColors.MenuText;
-            textBox3.ForeColor = SystemColors.Window;
-            textBox3.Location = new Point(540, 528);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(185, 23);
-            textBox3.TabIndex = 3;
+            txtSenha.BackColor = SystemColors.MenuText;
+            txtSenha.ForeColor = SystemColors.Window;
+            txtSenha.Location = new Point(540, 528);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(185, 23);
+            txtSenha.TabIndex = 3;
             // 
             // bTConfirmar
             // 
@@ -100,11 +100,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1094, 801);
             Controls.Add(bTConfirmar);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtSenha);
+            Controls.Add(txtEmail);
+            Controls.Add(txtNome);
             Controls.Add(pictureBox1);
             Name = "Telalogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Telalogin";
             Load += Telalogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -115,9 +116,9 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtNome;
+        private TextBox txtEmail;
+        private TextBox txtSenha;
         private Button bTConfirmar;
     }
 }

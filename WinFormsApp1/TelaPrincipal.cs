@@ -10,11 +10,23 @@ using System.Windows.Forms;
 
 namespace styleinbanknotes
 {
+    
     public partial class TelaPrincipal : Form
     {
         public TelaPrincipal()
         {
             InitializeComponent();
+
+        }
+       
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           
         }
     }
 }
