@@ -44,7 +44,7 @@
             button1.Size = new Size(1495, 721);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += btn1;
             // 
             // Form1
             // 

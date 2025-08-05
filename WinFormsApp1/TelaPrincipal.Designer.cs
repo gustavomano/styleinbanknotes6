@@ -28,12 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "TelaPrincipal";
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
+            timer1 = new System.Windows.Forms.Timer(components);
+            imageList1 = new ImageList(components);
+            SuspendLayout();
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 5000;
+            timer1.Tick += timer1_Tick;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "projeto (6).png");
+            imageList1.Images.SetKeyName(1, "projeto (5).png");
+            imageList1.Images.SetKeyName(2, "projeto (4).png");
+            imageList1.Images.SetKeyName(3, "projeto (3).png");
+            imageList1.Images.SetKeyName(4, "projeto (2).png");
+            imageList1.Images.SetKeyName(5, "projeto (1).png");
+            // 
+            // TelaPrincipal
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Name = "TelaPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "TelaPrincipal";
+            ResumeLayout(false);
         }
 
         #endregion
+        private System.Windows.Forms.Timer timer1;
+        private ImageList imageList1;
     }
 }

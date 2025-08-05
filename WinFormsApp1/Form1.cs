@@ -15,16 +15,16 @@ namespace WinFormsApp1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn1(object sender, EventArgs e)
         {
             telacc frm = new telacc();
             this.Visible = false;
             frm.ShowDialog();
-            this.Visible = true;
+            frm.Close();
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void lbl(object sender, EventArgs e)
         {
 
         }
