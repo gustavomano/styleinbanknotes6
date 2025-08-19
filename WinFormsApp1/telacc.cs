@@ -30,7 +30,7 @@ namespace styleinbanknotes
         private void telacc_Load(object sender, EventArgs e)
         {
 
-           
+
         }
         private void btn2(object sender, EventArgs e)
         {
@@ -135,6 +135,14 @@ namespace styleinbanknotes
         {
             mostrar.BringToFront();
             txtSenha.PasswordChar = '*';
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            tlRegis frm = new tlRegis();
+            this.Visible = false;
+            frm.ShowDialog();
+            frm.Close();
         }
 
         //private void test_Click(object sender, EventArgs e)

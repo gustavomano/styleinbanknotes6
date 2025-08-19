@@ -37,12 +37,14 @@
             pictureBox3 = new PictureBox();
             ocultar = new PictureBox();
             mostrar = new PictureBox();
+            pictureBox5 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ocultar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mostrar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -133,11 +135,23 @@
             mostrar.TabStop = false;
             mostrar.Click += mostrar_Click;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.projeto__4_;
+            pictureBox5.Location = new Point(12, 42);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(188, 54);
+            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox5.TabIndex = 15;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            // 
             // telacc
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1733, 1061);
+            Controls.Add(pictureBox5);
             Controls.Add(ocultar);
             Controls.Add(txtEmail);
             Controls.Add(txtSenha);
@@ -156,6 +170,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)ocultar).EndInit();
             ((System.ComponentModel.ISupportInitialize)mostrar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -170,5 +185,6 @@
         private PictureBox pictureBox3;
         private PictureBox ocultar;
         private PictureBox mostrar;
+        private PictureBox pictureBox5;
     }
 }

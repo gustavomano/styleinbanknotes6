@@ -53,7 +53,6 @@ namespace WinFormsApp1
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
 
-            // Aqui você pode colocar validações básicas, tipo se os campos estão preenchidos
             if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
                 MessageBox.Show("Preencha todos os campos!");
@@ -64,7 +63,6 @@ namespace WinFormsApp1
             {
                 cnn.Open();
 
-                // Primeiro verifica se o email já existe
                 string sqlVerifica = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email";
 
                 using (SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, cnn))
@@ -79,7 +77,6 @@ namespace WinFormsApp1
                     }
                 }
 
-                // Se não existe, insere o cadastro
                 string sqlInsert = "INSERT INTO cadastro (Nome, Email, Senha) VALUES (@Nome, @Email, @Senha)";
 
                 using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, cnn))
@@ -93,7 +90,8 @@ namespace WinFormsApp1
                     if (linhasAfetadas > 0)
                     {
                         MessageBox.Show("Cadastro realizado com sucesso!");
-                        // Aqui pode limpar os campos se quiser
+                    
+                        Cliente cliente = new Cliente();
                         txtNome.Clear();
                         txtEmail.Clear();
                         txtSenha.Clear();
@@ -106,7 +104,7 @@ namespace WinFormsApp1
                 if (result == DialogResult.Yes)
                 {
                     MessageBox.Show("Conta criada com sucesso!");
-                    // Exibe o próximo formulário
+              
                     TelaPrincipal frm = new TelaPrincipal();
                     this.Visible = false;
                     frm.ShowDialog();
@@ -130,7 +128,7 @@ namespace WinFormsApp1
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
 
-            // Aqui você pode colocar validações básicas, tipo se os campos estão preenchidos
+           
             if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
                 MessageBox.Show("Preencha todos os campos!");
@@ -141,7 +139,7 @@ namespace WinFormsApp1
             {
                 cnn.Open();
 
-                // Primeiro verifica se o email já existe
+               
                 string sqlVerifica = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email";
 
                 using (SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, cnn))
@@ -156,7 +154,7 @@ namespace WinFormsApp1
                     }
                 }
 
-                // Se não existe, insere o cadastro
+             
                 string sqlInsert = "INSERT INTO cadastro (Nome, Email, Senha) VALUES (@Nome, @Email, @Senha)";
 
                 using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, cnn))
@@ -170,7 +168,7 @@ namespace WinFormsApp1
                     if (linhasAfetadas > 0)
                     {
                         MessageBox.Show("Cadastro realizado com sucesso!");
-                        // Aqui pode limpar os campos se quiser
+                       
                         txtNome.Clear();
                         txtEmail.Clear();
                         txtSenha.Clear();
@@ -183,7 +181,7 @@ namespace WinFormsApp1
                 if (result == DialogResult.Yes)
                 {
                     MessageBox.Show("Conta criada com sucesso!");
-                    // Exibe o próximo formulário
+                   
                     TelaPrincipal frm = new TelaPrincipal();
                     this.Visible = false;
                     frm.ShowDialog();
