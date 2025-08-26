@@ -301,7 +301,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="carrinho.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAMEBJREFUeF7s3f+zbWVdwPF19vl2LxQFipqkCWERIRkTUubIjDYmjKYR1FSOyJem
@@ -516,7 +516,7 @@
   <data name="btnBuscar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAALHhJREFUeF7s3c+rbWUZwPF37X322bv8BYZcy+5Mk1AaVAONyIFI1KCiwKAmYeCg
+        vAAADrwBlbxySQAALHhJREFUeF7s3c+rbWUZwPF37X322bv8BYZcy+5Mk1AaVAONyIFI1KCiwKAmYeCg
         QRDRvAZdJRyYSZRhYYi/+iPfWOd0qXvPTdNR63s/gw9s1nrX/ge+PO8z/nEaEwAAAAAAAIDtG7c/AAAA
         AAAAAGCbBGAAAAAAAACACAEYAAAAAAAAIEIABgAAAAAAAIgQgAEAAAAAAAAiBGAAAAAAAACACAEYAAAA
         AAAAIEIABgAAAAAAAIgQgAEAAAAAAAAiBGAAAAAAAACACAEYAAAAAAAAIEIABgAAAAAAAIgQgAEAAAAA

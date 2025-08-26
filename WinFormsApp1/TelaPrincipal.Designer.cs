@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
             pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            carrinho = new PictureBox();
             pictureBox3 = new PictureBox();
             txtPesquisa = new TextBox();
             btnBuscar = new PictureBox();
             dgvProdutos = new DataGridView();
+            btnCarrinho = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)carrinho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).BeginInit();
@@ -53,22 +54,24 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click_1;
             // 
-            // pictureBox2
+            // carrinho
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(1705, 33);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(77, 63);
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
+            carrinho.Cursor = Cursors.Hand;
+            carrinho.Image = (Image)resources.GetObject("carrinho.Image");
+            carrinho.Location = new Point(1705, 33);
+            carrinho.Name = "carrinho";
+            carrinho.Size = new Size(77, 63);
+            carrinho.SizeMode = PictureBoxSizeMode.CenterImage;
+            carrinho.TabIndex = 1;
+            carrinho.TabStop = false;
+            carrinho.Click += carrinho_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.projeto__2_;
-            pictureBox3.Location = new Point(1800, 27);
+            pictureBox3.Location = new Point(1799, 33);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(87, 69);
+            pictureBox3.Size = new Size(76, 69);
             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -84,7 +87,6 @@
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(175, 26);
             txtPesquisa.TabIndex = 3;
-            txtPesquisa.Text = "          ";
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // btnBuscar
@@ -103,27 +105,41 @@
             // 
             dgvProdutos.BackgroundColor = Color.FromArgb(171, 0, 8);
             dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProdutos.Location = new Point(814, 117);
+            dgvProdutos.Location = new Point(698, 117);
             dgvProdutos.Name = "dgvProdutos";
-            dgvProdutos.Size = new Size(381, 136);
+            dgvProdutos.Size = new Size(603, 136);
             dgvProdutos.TabIndex = 5;
+            dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
+            // 
+            // btnCarrinho
+            // 
+            btnCarrinho.BackColor = Color.FromArgb(200, 31, 23);
+            btnCarrinho.FlatStyle = FlatStyle.Popup;
+            btnCarrinho.Location = new Point(1228, 286);
+            btnCarrinho.Name = "btnCarrinho";
+            btnCarrinho.Size = new Size(99, 23);
+            btnCarrinho.TabIndex = 6;
+            btnCarrinho.Text = "VER CARRINHO";
+            btnCarrinho.UseVisualStyleBackColor = false;
+            btnCarrinho.Click += btnCarrinho_Click;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1899, 704);
+            Controls.Add(btnCarrinho);
             Controls.Add(dgvProdutos);
             Controls.Add(btnBuscar);
             Controls.Add(txtPesquisa);
             Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
+            Controls.Add(carrinho);
             Controls.Add(pictureBox1);
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaPrincipal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)carrinho).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).EndInit();
@@ -134,10 +150,11 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+        private PictureBox carrinho;
         private PictureBox pictureBox3;
         private TextBox txtPesquisa;
         private PictureBox btnBuscar;
         private DataGridView dgvProdutos;
+        private Button btnCarrinho;
     }
 }
