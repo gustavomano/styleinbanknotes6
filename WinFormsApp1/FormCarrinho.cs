@@ -16,7 +16,7 @@ namespace styleinbanknotes
         {
             InitializeComponent();
 
-            
+
             DataTable dt = itens[0].Table.Clone();
             foreach (DataRow r in itens)
             {
@@ -33,6 +33,14 @@ namespace styleinbanknotes
         private void dgvCarrinho_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            TelaPrincipal frm = new TelaPrincipal();
+            this.Visible = false;
+            frm.ShowDialog();
+            frm.Close();
         }
     }
 }

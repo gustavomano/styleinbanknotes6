@@ -134,6 +134,7 @@ namespace styleinbanknotes
 
             FormCarrinho f = new FormCarrinho(itensCarrinho);
             f.ShowDialog();
+            f.Close();
         }
 
         private void carrinho_Click(object sender, EventArgs e)
@@ -145,6 +146,7 @@ namespace styleinbanknotes
             }
             FormCarrinho f = new FormCarrinho(itensCarrinho);
             f.ShowDialog();
+            f.Close();
 
         }
     }

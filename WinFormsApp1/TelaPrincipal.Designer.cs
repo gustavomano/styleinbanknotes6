@@ -35,7 +35,6 @@
             txtPesquisa = new TextBox();
             btnBuscar = new PictureBox();
             dgvProdutos = new DataGridView();
-            btnCarrinho = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carrinho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -111,24 +110,11 @@
             dgvProdutos.TabIndex = 5;
             dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
             // 
-            // btnCarrinho
-            // 
-            btnCarrinho.BackColor = Color.FromArgb(200, 31, 23);
-            btnCarrinho.FlatStyle = FlatStyle.Popup;
-            btnCarrinho.Location = new Point(1228, 286);
-            btnCarrinho.Name = "btnCarrinho";
-            btnCarrinho.Size = new Size(99, 23);
-            btnCarrinho.TabIndex = 6;
-            btnCarrinho.Text = "VER CARRINHO";
-            btnCarrinho.UseVisualStyleBackColor = false;
-            btnCarrinho.Click += btnCarrinho_Click;
-            // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1899, 704);
-            Controls.Add(btnCarrinho);
             Controls.Add(dgvProdutos);
             Controls.Add(btnBuscar);
             Controls.Add(txtPesquisa);
@@ -155,6 +141,5 @@
         private TextBox txtPesquisa;
         private PictureBox btnBuscar;
         private DataGridView dgvProdutos;
-        private Button btnCarrinho;
     }
 }

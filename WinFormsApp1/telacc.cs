@@ -22,6 +22,22 @@ namespace styleinbanknotes
         public telacc()
         {
             InitializeComponent();
+           
+            try
+            {
+                string connetionString;
+                SqlConnection cnn;
+                connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3022129pr2;User ID=aluno;Password=aluno";
+                cnn = new SqlConnection(connetionString);
+                cnn.Open();
+                MessageBox.Show("Connection Open !");
+                cnn.Close();
+            }
+            catch (SqlException erro)
+            {
+                MessageBox.Show("Erro ao se conectar no banco de dados \n" +
+                "Verifique os dados informados" + erro);
+            }
 
         }
 
