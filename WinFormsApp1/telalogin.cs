@@ -172,21 +172,17 @@ namespace WinFormsApp1
                         txtNome.Clear();
                         txtEmail.Clear();
                         txtSenha.Clear();
+                        telacc frm = new telacc();
+                        this.Visible = false;
+                        frm.ShowDialog();
+                        this.Visible = true;
                     }
                     else
                     {
                         MessageBox.Show("Erro ao cadastrar.");
                     }
                 }
-                if (result == DialogResult.Yes)
-                {
-                    MessageBox.Show("Conta criada com sucesso!");
-                   
-                    TelaPrincipal frm = new TelaPrincipal();
-                    this.Visible = false;
-                    frm.ShowDialog();
-                    this.Visible = true;
-                }
+               
             }
         }
 

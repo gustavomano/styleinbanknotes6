@@ -138,6 +138,7 @@
             // 
             // pictureBox5
             // 
+            pictureBox5.Cursor = Cursors.Hand;
             pictureBox5.Image = Properties.Resources.projeto__4_;
             pictureBox5.Location = new Point(12, 42);
             pictureBox5.Name = "pictureBox5";

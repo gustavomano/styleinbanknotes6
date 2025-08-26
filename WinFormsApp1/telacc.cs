@@ -22,7 +22,13 @@ namespace styleinbanknotes
         public telacc()
         {
             InitializeComponent();
-           
+   
+        }
+
+        string connectionString = "Server=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
+
+        private void telacc_Load(object sender, EventArgs e)
+        {
             try
             {
                 string connetionString;
@@ -38,14 +44,6 @@ namespace styleinbanknotes
                 MessageBox.Show("Erro ao se conectar no banco de dados \n" +
                 "Verifique os dados informados" + erro);
             }
-
-        }
-
-        string connectionString = "Server=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
-
-        private void telacc_Load(object sender, EventArgs e)
-        {
-
 
         }
         private void btn2(object sender, EventArgs e)
@@ -155,7 +153,7 @@ namespace styleinbanknotes
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            tlRegis frm = new tlRegis();
+            adm frm = new adm();
             this.Visible = false;
             frm.ShowDialog();
             frm.Close();
