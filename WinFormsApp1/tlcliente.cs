@@ -25,7 +25,7 @@ namespace styleinbanknotes
         {
             lblNome.Text = cliente.Nome;
             lblEmail.Text = cliente.Email;
-            
+            //ATUALIZA GIT
         }
     }
 }

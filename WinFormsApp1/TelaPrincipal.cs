@@ -20,7 +20,7 @@ namespace styleinbanknotes
             InitializeComponent();
 
         }
-
+        //ATUALIZA GIT
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -37,7 +37,7 @@ namespace styleinbanknotes
         }
         string conexao = @"Data Source=sqlexpress;Initial Catalog=cj3022129pr2;User ID=aluno;Password=aluno";
 
-
+        //ATUALIZA GIT
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
