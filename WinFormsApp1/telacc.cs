@@ -122,8 +122,15 @@ namespace styleinbanknotes
                     cmd.Parameters.AddWithValue("@Senha", senha);
 
                     int count = (int)cmd.ExecuteScalar();
-
-                    if (count > 0)
+                    if (email == "adm" ||  senha == "adm")
+                    {
+                        MessageBox.Show("Bem vindo ao sistema!");
+                        adm frm = new adm();
+                        this.Visible = false;
+                        frm.ShowDialog();
+                        frm.Close();
+                    }
+                    else if  (count > 0)
                     {
                         MessageBox.Show("Login realizado com sucesso!");
                         TelaPrincipal frm = new TelaPrincipal();

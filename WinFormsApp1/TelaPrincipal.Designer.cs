@@ -104,7 +104,9 @@
             // 
             dgvProdutos.BackgroundColor = Color.FromArgb(171, 0, 8);
             dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProdutos.GridColor = SystemColors.Window;
+            dgvProdutos.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgvProdutos.GridColor = SystemColors.InfoText;
+            dgvProdutos.ImeMode = ImeMode.Off;
             dgvProdutos.Location = new Point(698, 117);
             dgvProdutos.Name = "dgvProdutos";
             dgvProdutos.Size = new Size(603, 136);
@@ -141,6 +143,6 @@
         private PictureBox pictureBox3;
         private TextBox txtPesquisa;
         private PictureBox btnBuscar;
-        private DataGridView dgvProdutos;
+        protected internal DataGridView dgvProdutos;
     }
 }

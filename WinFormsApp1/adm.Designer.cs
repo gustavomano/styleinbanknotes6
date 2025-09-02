@@ -39,12 +39,14 @@
             label1 = new Label();
             label2 = new Label();
             label4 = new Label();
+            pictureBox5 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -152,11 +154,21 @@
             label4.TabIndex = 11;
             label4.Text = "CADASTRAR PRODUTOS";
             // 
+            // pictureBox5
+            // 
+            pictureBox5.Location = new Point(1101, 367);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(200, 44);
+            pictureBox5.TabIndex = 12;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            // 
             // adm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1449, 692);
+            Controls.Add(pictureBox5);
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -175,6 +187,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,5 +204,6 @@
         private Label label1;
         private Label label2;
         private Label label4;
+        private PictureBox pictureBox5;
     }
 }

@@ -32,6 +32,7 @@
             dgvCarrinho = new DataGridView();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
+            buttonFinalizar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCarrinho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -41,7 +42,7 @@
             // 
             dgvCarrinho.BackgroundColor = Color.FromArgb(171, 0, 8);
             dgvCarrinho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCarrinho.Location = new Point(244, 188);
+            dgvCarrinho.Location = new Point(311, 207);
             dgvCarrinho.Name = "dgvCarrinho";
             dgvCarrinho.Size = new Size(310, 170);
             dgvCarrinho.TabIndex = 0;
@@ -53,25 +54,38 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(800, 450);
+            pictureBox1.Size = new Size(947, 507);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(244, 12);
+            pictureBox2.Location = new Point(311, 12);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(310, 160);
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
+            // buttonFinalizar
+            // 
+            buttonFinalizar.BackColor = Color.FromArgb(189, 0, 8);
+            buttonFinalizar.FlatStyle = FlatStyle.Popup;
+            buttonFinalizar.Location = new Point(390, 417);
+            buttonFinalizar.Name = "buttonFinalizar";
+            buttonFinalizar.Size = new Size(148, 30);
+            buttonFinalizar.TabIndex = 3;
+            buttonFinalizar.Text = "FINALIZAR PEDIDO";
+            buttonFinalizar.UseVisualStyleBackColor = false;
+            buttonFinalizar.Click += button1_Click;
+            // 
             // FormCarrinho
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(947, 507);
+            Controls.Add(buttonFinalizar);
             Controls.Add(dgvCarrinho);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -89,5 +103,6 @@
         private DataGridView dgvCarrinho;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private Button buttonFinalizar;
     }
 }

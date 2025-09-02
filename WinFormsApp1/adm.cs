@@ -21,9 +21,9 @@ namespace styleinbanknotes
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             Telalogin frm = new Telalogin();
-            
+
             frm.ShowDialog();
-           
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -35,28 +35,35 @@ namespace styleinbanknotes
         {
 
             telacc frm = new telacc();
-            
+
             frm.ShowDialog();
-            
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             TelaPrincipal frm = new TelaPrincipal();
-            
+
             frm.ShowDialog();
-           
+
         }
 
-    
+
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             tlRegis frm = new tlRegis();
-            
-            frm.ShowDialog();
-            
 
+            frm.ShowDialog();
+
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            FormAdmin frm = new FormAdmin();
+
+            frm.ShowDialog();
         }
     }
 }
