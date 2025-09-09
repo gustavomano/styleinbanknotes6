@@ -20,7 +20,7 @@ namespace styleinbanknotes
         public FormCarrinho(List<DataRow> itens)
         {
             InitializeComponent();
-            
+
 
             DataTable dt = itens[0].Table.Clone();
             foreach (DataRow r in itens)
@@ -60,13 +60,15 @@ namespace styleinbanknotes
 
                 try
                 {
-                    // Inserir pedido
+
                     string sqlPedido = "INSERT INTO Pedidos (cod_cliente, Status) OUTPUT INSERTED.PedidoId VALUES (@cod_cliente, 'Em preparação')";
                     SqlCommand cmdPedido = new SqlCommand(sqlPedido, conn, tran);
-                    cmdPedido.Parameters.AddWithValue("@cod_cliente", 1); // depois substituímos pelo cliente logado
+
+
+                    cmdPedido.Parameters.AddWithValue("@cod_cliente", UsuarioLogado.CodCliente);
+
                     int pedidoId = (int)cmdPedido.ExecuteScalar();
 
-                    // Inserir itens
                     foreach (DataGridViewRow row in dgvCarrinho.SelectedRows)
                     {
                         int produtoId = (int)row.Cells["Id"].Value;
@@ -79,7 +81,6 @@ namespace styleinbanknotes
                         cmdItem.Parameters.AddWithValue("@Produto", nome);
                         cmdItem.ExecuteNonQuery();
 
-                        // Atualiza estoque
                         string sqlEstoque = "UPDATE Produtos SET Estoque = Estoque - 1 WHERE Id = @Id";
                         SqlCommand cmdEstoque = new SqlCommand(sqlEstoque, conn, tran);
                         cmdEstoque.Parameters.AddWithValue("@Id", produtoId);
@@ -97,5 +98,5 @@ namespace styleinbanknotes
             }
         }
     }
- }
+}
 

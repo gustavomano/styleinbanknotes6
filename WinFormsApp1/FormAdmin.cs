@@ -48,62 +48,24 @@ namespace styleinbanknotes
             dataGridViewPedidos.Columns["DataPedido"].Width = 180;
         }
 
-        private void buttonAtualizar_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPedidos.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Selecione um pedido.");
-                return;
-            }
-
-            int pedidoId = (int)dataGridViewPedidos.SelectedRows[0].Cells["PedidoId"].Value;
-            string novoStatus = comboBoxStatus.SelectedItem?.ToString();
-            string emailCliente = dataGridViewPedidos.SelectedRows[0].Cells["Email"].Value.ToString();
-            string nomeCliente = dataGridViewPedidos.SelectedRows[0].Cells["Cliente"].Value.ToString();
-
-            if (string.IsNullOrEmpty(novoStatus))
-            {
-                MessageBox.Show("Selecione um status.");
-                return;
-            }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string sql = "UPDATE Pedidos SET Status = @Status WHERE PedidoId = @PedidoId";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Status", novoStatus);
-                cmd.Parameters.AddWithValue("@PedidoId", pedidoId);
-                cmd.ExecuteNonQuery();
-            }
-
-            MessageBox.Show("Status atualizado!");
-            CarregarPedidos();
-
-            if (novoStatus == "Saiu para entrega")
-            {
-                EnviarEmail(emailCliente, $"Olá {nomeCliente}, seu pedido saiu para entrega 🚚");
-            }
-        }
-
         private void EnviarEmail(string destinatario, string mensagem)
         {
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-
-                mail.From = new MailAddress("guhalves552266@gmail.com"); // seu e-mail
+                mail.From = new MailAddress("guhalves552266@gmail.com");
                 mail.To.Add(destinatario);
                 mail.Subject = "Atualização do pedido";
                 mail.Body = mensagem;
 
-                smtpServer.Port = 587;
-                smtpServer.Credentials = new NetworkCredential("guhalves552266@gmail.com", "autoclick;-;");
-                smtpServer.EnableSsl = true;
 
-                smtpServer.Send(mail);
-                MessageBox.Show("E-mail enviado para o cliente!");
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("guhalves552266@gmail.com", "spnb pgti eboz quuq");
+                smtp.EnableSsl = true;
+
+                smtp.Send(mail);
+
+                MessageBox.Show("E-mail enviado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -142,13 +104,37 @@ namespace styleinbanknotes
 
             MessageBox.Show("Status atualizado!");
             CarregarPedidos();
-
+            if (string.IsNullOrWhiteSpace(emailCliente) || !emailCliente.Contains("@"))
+            {
+                MessageBox.Show("E-mail do cliente inválido.");
+                return;
+            }
             if (novoStatus == "Saiu para entrega")
             {
-                EnviarEmail(emailCliente, $"Olá {nomeCliente}, seu pedido saiu para entrega 🚚");
+                if (!string.IsNullOrWhiteSpace(emailCliente) && emailCliente.Contains("@"))
+                {
+                    EnviarEmail(emailCliente, $"Olá {nomeCliente}, seu pedido saiu para entrega 🚚");
+                }
+            }
+            else if (novoStatus == "Entregue")
+            {
+                if (!string.IsNullOrWhiteSpace(emailCliente) && emailCliente.Contains("@"))
+                {
+                    EnviarEmail(emailCliente, $"Olá {nomeCliente}, seu pedido já foi entregue 📦");
+                }
             }
         }
+
+        private void dataGridViewPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FormAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
- }
+}
 
 

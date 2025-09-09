@@ -60,10 +60,12 @@
             // 
             // buttonAtualizar
             // 
+            buttonAtualizar.FlatStyle = FlatStyle.Popup;
             buttonAtualizar.Location = new Point(409, 346);
             buttonAtualizar.Name = "buttonAtualizar";
-            buttonAtualizar.Size = new Size(75, 23);
+            buttonAtualizar.Size = new Size(106, 23);
             buttonAtualizar.TabIndex = 0;
+            buttonAtualizar.Text = "ATUALIZAR STATUS";
             buttonAtualizar.Click += buttonAtualizar_Click_1;
             // 
             // FormAdmin
@@ -75,6 +77,7 @@
             Controls.Add(dataGridViewPedidos);
             Name = "FormAdmin";
             Text = "Administração de Pedidos";
+            Load += FormAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).EndInit();
             ResumeLayout(false);
             PerformLayout();
