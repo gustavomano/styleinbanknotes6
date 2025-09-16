@@ -39,6 +39,7 @@
             dataGridViewPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewPedidos.Size = new Size(760, 300);
             dataGridViewPedidos.TabIndex = 0;
+            dataGridViewPedidos.CellContentClick += dataGridViewPedidos_CellContentClick_1;
             // 
             // label1
             // 

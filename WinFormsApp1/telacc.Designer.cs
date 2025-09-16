@@ -145,6 +145,7 @@
             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox5.TabIndex = 15;
             pictureBox5.TabStop = false;
+            pictureBox5.Visible = false;
             pictureBox5.Click += pictureBox5_Click_1;
             // 
             // telacc

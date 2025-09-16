@@ -17,6 +17,7 @@ namespace styleinbanknotes
     {
 
         string connectionString = "Server=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
+        string connString = "Data Source=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
         public FormCarrinho(List<DataRow> itens)
         {
             InitializeComponent();
@@ -53,6 +54,34 @@ namespace styleinbanknotes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string query = @"SELECT endereco, num, bairro, cep, cidad, sigla_estado 
+                 FROM cadastro 
+                 WHERE cod_cliente = @id";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", UsuarioLogado.CodCliente);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                       
+                        if (reader["endereco"] == DBNull.Value || string.IsNullOrWhiteSpace(reader["endereco"].ToString()))
+                        {
+                           
+                            FormAtualizarEndereco frmEndereco = new FormAtualizarEndereco();
+                            frmEndereco.ShowDialog();
+                        }
+                        else
+                        {
+                           
+                        }
+                    }
+                }
+            }
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -86,7 +115,7 @@ namespace styleinbanknotes
                         cmdEstoque.Parameters.AddWithValue("@Id", produtoId);
                         cmdEstoque.ExecuteNonQuery();
                     }
-
+                   
                     tran.Commit();
                     MessageBox.Show("Pedido finalizado com sucesso!");
                 }

@@ -139,6 +139,11 @@ namespace styleinbanknotes
         {
 
         }
+
+        private void dataGridViewPedidos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 
