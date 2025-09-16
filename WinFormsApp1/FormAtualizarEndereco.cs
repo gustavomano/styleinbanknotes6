@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace styleinbanknotes
 {
@@ -17,6 +20,32 @@ namespace styleinbanknotes
         public FormAtualizarEndereco()
         {
             InitializeComponent();
+        }
+        private async Task BuscarCEP(string cep)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = $"https://viacep.com.br/ws/{cep}/json/";
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var endereco = JsonConvert.DeserializeObject<Endereco>(json);
+
+                    if (endereco != null)
+                    {
+                        txtEndereco.Text = endereco.logradouro;
+                        txtBairro.Text = endereco.bairro;
+                        txtCidade.Text = endereco.localidade;
+                        cmbEstado.Text = endereco.uf;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("CEP não encontrado!");
+                }
+            }
         }
 
         private void FormAtualizarEndereco_Load(object sender, EventArgs e)
@@ -87,6 +116,11 @@ namespace styleinbanknotes
                 txtNumero.Text = "";
                 txtNumero.Enabled = true;  // libera edição
             }
+        }
+
+        private void txtNumero_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

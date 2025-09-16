@@ -76,7 +76,7 @@
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(1099, 630);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(319, 188);
+            pictureBox2.Size = new Size(319, 186);
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;

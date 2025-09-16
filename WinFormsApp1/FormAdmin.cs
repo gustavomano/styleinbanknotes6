@@ -31,7 +31,7 @@ namespace styleinbanknotes
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = @"SELECT p.PedidoId, c.Nome AS Cliente, c.Email, p.Status, p.DataPedido
+                string sql = @"SELECT p.PedidoId, c.Nome AS Cliente, c.Email, p.Status, p.DataPedido, c.Endereco
                                FROM Pedidos p
                                INNER JOIN cadastro c ON p.cod_cliente = c.cod_cliente";
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
@@ -46,6 +46,7 @@ namespace styleinbanknotes
             dataGridViewPedidos.Columns["Email"].Width = 200;
             dataGridViewPedidos.Columns["Status"].Width = 150;
             dataGridViewPedidos.Columns["DataPedido"].Width = 180;
+            dataGridViewPedidos.Columns["Endereco"].Width = 180;
         }
 
         private void EnviarEmail(string destinatario, string mensagem)

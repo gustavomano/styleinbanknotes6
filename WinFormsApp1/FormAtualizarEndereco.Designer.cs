@@ -115,6 +115,7 @@
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(141, 26);
             txtNumero.TabIndex = 5;
+            txtNumero.TextChanged += txtNumero_TextChanged;
             // 
             // label3
             // 
@@ -188,9 +189,11 @@
             // 
             // cmbEstado
             // 
+            cmbEstado.BackColor = Color.White;
+            cmbEstado.FlatStyle = FlatStyle.Popup;
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
-            cmbEstado.Location = new Point(407, 394);
+            cmbEstado.Location = new Point(405, 394);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(73, 23);
             cmbEstado.TabIndex = 12;
@@ -212,13 +215,13 @@
             // 
             // chkSemNumero
             // 
-            chkSemNumero.AutoSize = true;
-            chkSemNumero.Location = new Point(407, 273);
+            chkSemNumero.BackColor = Color.FromArgb(171, 0, 8);
+            chkSemNumero.Location = new Point(396, 273);
             chkSemNumero.Name = "chkSemNumero";
-            chkSemNumero.Size = new Size(102, 19);
+            chkSemNumero.Size = new Size(102, 26);
             chkSemNumero.TabIndex = 14;
             chkSemNumero.Text = "SEM NÚMERO";
-            chkSemNumero.UseVisualStyleBackColor = true;
+            chkSemNumero.UseVisualStyleBackColor = false;
             chkSemNumero.CheckedChanged += chkSemNumero_CheckedChanged;
             // 
             // FormAtualizarEndereco
