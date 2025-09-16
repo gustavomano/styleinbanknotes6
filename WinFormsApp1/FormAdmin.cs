@@ -134,6 +134,11 @@ namespace styleinbanknotes
         {
 
         }
+
+        private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

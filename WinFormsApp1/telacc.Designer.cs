@@ -37,12 +37,14 @@
             pictureBox3 = new PictureBox();
             ocultar = new PictureBox();
             mostrar = new PictureBox();
+            pictureBox5 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ocultar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mostrar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -71,7 +73,7 @@
             // 
             txtSenha.BackColor = SystemColors.MenuText;
             txtSenha.ForeColor = SystemColors.Window;
-            txtSenha.Location = new Point(900, 481);
+            txtSenha.Location = new Point(900, 485);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(185, 23);
             txtSenha.TabIndex = 8;
@@ -102,7 +104,7 @@
             // 
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Image = Properties.Resources._32;
-            pictureBox3.Location = new Point(1137, 562);
+            pictureBox3.Location = new Point(1133, 592);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(256, 187);
             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -134,11 +136,23 @@
             mostrar.TabStop = false;
             mostrar.Click += mostrar_Click;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(768, 514);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(230, 32);
+            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox5.TabIndex = 15;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click_1;
+            // 
             // telacc
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1733, 1061);
+            Controls.Add(pictureBox5);
             Controls.Add(ocultar);
             Controls.Add(txtEmail);
             Controls.Add(txtSenha);
@@ -157,6 +171,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)ocultar).EndInit();
             ((System.ComponentModel.ISupportInitialize)mostrar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,5 +186,6 @@
         private PictureBox pictureBox3;
         private PictureBox ocultar;
         private PictureBox mostrar;
+        private PictureBox pictureBox5;
     }
 }

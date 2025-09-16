@@ -57,6 +57,7 @@
             comboBoxStatus.Name = "comboBoxStatus";
             comboBoxStatus.Size = new Size(250, 23);
             comboBoxStatus.TabIndex = 2;
+            comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
             // 
             // buttonAtualizar
             // 

@@ -145,6 +145,15 @@ namespace styleinbanknotes
             frm.Close();
         }
 
+        private void pictureBox5_Click_1(object sender, EventArgs e)
+        {
+            
+            FormRecuperarSenha frm = new FormRecuperarSenha();
+            this.Visible = false;
+            frm.ShowDialog();
+            frm.Close();
+        }
+
         //private void test_Click(object sender, EventArgs e)
         //{
         //    try
