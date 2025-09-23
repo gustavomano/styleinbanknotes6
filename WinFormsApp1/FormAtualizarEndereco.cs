@@ -16,10 +16,19 @@ namespace styleinbanknotes
 {
     public partial class FormAtualizarEndereco : Form
     {
+        bool enderecoSalvo = false;
         string connString = "Data Source=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
         public FormAtualizarEndereco()
         {
             InitializeComponent();
+        }
+        private void FormAtualizarEndereco_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!enderecoSalvo) 
+            {
+                MessageBox.Show("Você precisa salvar o endereço antes de fechar!");
+                e.Cancel = true;
+            }
         }
         private async Task BuscarCEP(string cep)
         {
@@ -95,12 +104,18 @@ namespace styleinbanknotes
                     cmd.Parameters.AddWithValue("@cep", txtCEP.Text);
                     cmd.Parameters.AddWithValue("@cidade", txtCidade.Text);
                     cmd.Parameters.AddWithValue("@estado", cmbEstado.SelectedItem?.ToString());
+                    if (cmbEstado.SelectedItem == null)
+                    {
+                        MessageBox.Show("Selecione um estado antes de salvar!");
+                        return;
+                    }
                     cmd.Parameters.AddWithValue("@id", UsuarioLogado.CodCliente);
-
+                    
                     cmd.ExecuteNonQuery();
                 }
             }
             MessageBox.Show("Endereço atualizado!");
+            enderecoSalvo = true;
             this.Close();
         }
 
@@ -122,5 +137,27 @@ namespace styleinbanknotes
         {
 
         }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtCEP.Text))
+            {
+                // Remove tudo que não for número
+                string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
+
+                if (cep.Length == 8) // CEP válido tem 8 dígitos
+                {
+                    await BuscarCEP(cep);
+                }
+                else
+                {
+                    MessageBox.Show("CEP inválido! Digite um CEP com 8 dígitos.");
+                }
+            }
+        }
+
+
     }
 }
+
+

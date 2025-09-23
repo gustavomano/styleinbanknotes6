@@ -99,7 +99,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(24, 12);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(148, 141);
+            pictureBox3.Size = new Size(148, 142);
             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox3.TabIndex = 9;
             pictureBox3.TabStop = false;

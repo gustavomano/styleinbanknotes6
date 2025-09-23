@@ -47,7 +47,8 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Nome: " + txtNome.Text + "\n" + "Email: " + txtEmail.Text + "\n" + "Senha: " + txtSenha.Text + "\n", "Atenção, confirma os dados digitados?",
+            DialogResult result = MessageBox.Show("Nome: " + txtNome.Text + "\n" + "Email: " + txtEmail.Text + "\n" + "Senha: " 
+                + txtSenha.Text + "\n", "Atenção, confirma os dados digitados?",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             string nome = txtNome.Text.Trim();
             string email = txtEmail.Text.Trim();
@@ -122,7 +123,8 @@ namespace WinFormsApp1
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Nome: " + txtNome.Text + "\n" + "Email: " + txtEmail.Text + "\n" + "Senha: " + txtSenha.Text + "\n", "Atenção, confirma os dados digitados?",
+            DialogResult result = MessageBox.Show("Nome: " + txtNome.Text + "\n" + "Email: " + txtEmail.Text 
+                + "\n" + "Senha: " + txtSenha.Text + "\n", "Atenção, confirma os dados digitados?",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             string nome = txtNome.Text.Trim();
             string email = txtEmail.Text.Trim();

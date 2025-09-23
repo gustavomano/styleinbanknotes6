@@ -40,6 +40,7 @@
             label2 = new Label();
             label4 = new Label();
             pictureBox5 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -156,18 +157,30 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(1101, 367);
+            pictureBox5.Cursor = Cursors.Hand;
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(1068, 378);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(200, 44);
+            pictureBox5.Size = new Size(369, 188);
             pictureBox5.TabIndex = 12;
             pictureBox5.TabStop = false;
             pictureBox5.Click += pictureBox5_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1068, 360);
+            label3.Name = "label3";
+            label3.Size = new Size(84, 15);
+            label3.TabIndex = 13;
+            label3.Text = "ADM PEDIDOS";
             // 
             // adm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1449, 692);
+            Controls.Add(label3);
             Controls.Add(pictureBox5);
             Controls.Add(label4);
             Controls.Add(label2);
@@ -205,5 +218,6 @@
         private Label label2;
         private Label label4;
         private PictureBox pictureBox5;
+        private Label label3;
     }
 }

@@ -71,7 +71,7 @@ namespace styleinbanknotes
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
 
-            if (email == "adm" && senha == "adm")
+            if (email == "adm" && senha == "adm" || email == "ADM" && senha == "ADM")
             {
                 MessageBox.Show("Bem vindo admmm");
                 adm frm = new adm();

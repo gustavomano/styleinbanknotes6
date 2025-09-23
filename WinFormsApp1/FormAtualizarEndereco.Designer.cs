@@ -44,6 +44,7 @@
             cmbEstado = new ComboBox();
             button1 = new Button();
             chkSemNumero = new CheckBox();
+            btnBuscarCEP = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             txtEndereco.BackColor = SystemColors.MenuText;
             txtEndereco.BorderStyle = BorderStyle.None;
+            txtEndereco.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEndereco.ForeColor = SystemColors.Window;
             txtEndereco.Location = new Point(249, 209);
             txtEndereco.Multiline = true;
@@ -109,6 +111,7 @@
             // 
             txtNumero.BackColor = SystemColors.Desktop;
             txtNumero.BorderStyle = BorderStyle.None;
+            txtNumero.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNumero.ForeColor = SystemColors.Window;
             txtNumero.Location = new Point(249, 273);
             txtNumero.Multiline = true;
@@ -134,6 +137,7 @@
             // 
             txtCidade.BackColor = SystemColors.Desktop;
             txtCidade.BorderStyle = BorderStyle.None;
+            txtCidade.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCidade.ForeColor = SystemColors.Window;
             txtCidade.Location = new Point(249, 389);
             txtCidade.Multiline = true;
@@ -157,6 +161,7 @@
             // 
             txtCEP.BackColor = SystemColors.Desktop;
             txtCEP.BorderStyle = BorderStyle.None;
+            txtCEP.Font = new Font("Segoe UI", 12F);
             txtCEP.ForeColor = SystemColors.Window;
             txtCEP.Location = new Point(249, 452);
             txtCEP.Multiline = true;
@@ -180,6 +185,7 @@
             // 
             txtBairro.BackColor = SystemColors.Desktop;
             txtBairro.BorderStyle = BorderStyle.None;
+            txtBairro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBairro.ForeColor = SystemColors.Window;
             txtBairro.Location = new Point(249, 331);
             txtBairro.Multiline = true;
@@ -205,7 +211,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(526, 525);
+            button1.Location = new Point(616, 516);
             button1.Name = "button1";
             button1.Size = new Size(141, 48);
             button1.TabIndex = 13;
@@ -224,11 +230,24 @@
             chkSemNumero.UseVisualStyleBackColor = false;
             chkSemNumero.CheckedChanged += chkSemNumero_CheckedChanged;
             // 
+            // btnBuscarCEP
+            // 
+            btnBuscarCEP.BackColor = Color.FromArgb(171, 0, 8);
+            btnBuscarCEP.FlatStyle = FlatStyle.Popup;
+            btnBuscarCEP.Location = new Point(405, 455);
+            btnBuscarCEP.Name = "btnBuscarCEP";
+            btnBuscarCEP.Size = new Size(84, 23);
+            btnBuscarCEP.TabIndex = 15;
+            btnBuscarCEP.Text = "BUSCAR CEP";
+            btnBuscarCEP.UseVisualStyleBackColor = false;
+            btnBuscarCEP.Click += button2_Click;
+            // 
             // FormAtualizarEndereco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1240, 595);
+            Controls.Add(btnBuscarCEP);
             Controls.Add(chkSemNumero);
             Controls.Add(button1);
             Controls.Add(cmbEstado);
@@ -246,6 +265,7 @@
             Controls.Add(pictureBox1);
             Name = "FormAtualizarEndereco";
             Text = "FormAtualizarEndereco";
+            FormClosing += FormAtualizarEndereco_FormClosing;
             Load += FormAtualizarEndereco_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -270,5 +290,6 @@
         private ComboBox cmbEstado;
         private Button button1;
         private CheckBox chkSemNumero;
+        private Button btnBuscarCEP;
     }
 }
