@@ -59,6 +59,7 @@
             pictureBox1.Size = new Size(1449, 692);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // pictureBox2
             // 
@@ -162,6 +163,7 @@
             pictureBox5.Location = new Point(1068, 378);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(369, 188);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 12;
             pictureBox5.TabStop = false;
             pictureBox5.Click += pictureBox5_Click;

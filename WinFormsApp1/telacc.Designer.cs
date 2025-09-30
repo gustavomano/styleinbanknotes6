@@ -67,7 +67,6 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(185, 23);
             txtEmail.TabIndex = 7;
-            txtEmail.TextChanged += textBox3_TextChanged;
             // 
             // txtSenha
             // 
@@ -81,9 +80,9 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(430, 716);
+            pictureBox2.Location = new Point(458, 726);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(545, 165);
+            pictureBox2.Size = new Size(525, 155);
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
@@ -92,9 +91,9 @@
             // 
             pictureBox4.Cursor = Cursors.Hand;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(791, 757);
+            pictureBox4.Location = new Point(807, 766);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(125, 124);
+            pictureBox4.Size = new Size(118, 115);
             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox4.TabIndex = 11;
             pictureBox4.TabStop = false;

@@ -27,12 +27,10 @@ namespace styleinbanknotes
         {
 
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
 
         }
-
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
@@ -45,12 +43,10 @@ namespace styleinbanknotes
         {
 
         }
-
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             string termo = txtPesquisa.Text.Trim();
@@ -60,7 +56,6 @@ namespace styleinbanknotes
                 MessageBox.Show("Digite um produto para pesquisar.");
                 return;
             }
-
             using (SqlConnection conn = new SqlConnection(conexao))
             {
                 try
@@ -104,15 +99,10 @@ namespace styleinbanknotes
                 }
             }
         }
-
         private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        {        }
         private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0 && dgvProdutos.Columns[e.ColumnIndex].Name == "Adicionar")
             {
                 DataRowView rowView = (DataRowView)dgvProdutos.Rows[e.RowIndex].DataBoundItem;
@@ -123,7 +113,6 @@ namespace styleinbanknotes
                 MessageBox.Show("Produto adicionado ao carrinho!");
             }
         }
-
         private void btnCarrinho_Click(object sender, EventArgs e)
         {
             if (itensCarrinho.Count == 0)
@@ -131,12 +120,10 @@ namespace styleinbanknotes
                 MessageBox.Show("Carrinho vazio!");
                 return;
             }
-
             FormCarrinho f = new FormCarrinho(itensCarrinho);
             f.ShowDialog();
             f.Close();
         }
-
         private void carrinho_Click(object sender, EventArgs e)
         {
             if (itensCarrinho.Count == 0)
@@ -147,7 +134,6 @@ namespace styleinbanknotes
             FormCarrinho f = new FormCarrinho(itensCarrinho);
             f.ShowDialog();
             f.Close();
-
         }
     }
 }

@@ -124,12 +124,12 @@ namespace styleinbanknotes
             if (chkSemNumero.Checked)
             {
                 txtNumero.Text = "SN";
-                txtNumero.Enabled = false; // bloqueia edição
+                txtNumero.Enabled = false; 
             }
             else
             {
                 txtNumero.Text = "";
-                txtNumero.Enabled = true;  // libera edição
+                txtNumero.Enabled = true; 
             }
         }
 
@@ -142,10 +142,10 @@ namespace styleinbanknotes
         {
             if (!string.IsNullOrWhiteSpace(txtCEP.Text))
             {
-                // Remove tudo que não for número
+               
                 string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
 
-                if (cep.Length == 8) // CEP válido tem 8 dígitos
+                if (cep.Length == 8) 
                 {
                     await BuscarCEP(cep);
                 }

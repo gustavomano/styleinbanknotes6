@@ -21,7 +21,6 @@ namespace styleinbanknotes
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             Telalogin frm = new Telalogin();
-
             frm.ShowDialog();
 
         }
@@ -64,6 +63,11 @@ namespace styleinbanknotes
             FormAdmin frm = new FormAdmin();
 
             frm.ShowDialog();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
