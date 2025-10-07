@@ -137,14 +137,14 @@
             // 
             // pictureBox5
             // 
+            pictureBox5.Cursor = Cursors.Hand;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(768, 514);
+            pictureBox5.Location = new Point(819, 514);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(230, 32);
+            pictureBox5.Size = new Size(141, 11);
             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox5.TabIndex = 15;
             pictureBox5.TabStop = false;
-            pictureBox5.Visible = false;
             pictureBox5.Click += pictureBox5_Click_1;
             // 
             // telacc

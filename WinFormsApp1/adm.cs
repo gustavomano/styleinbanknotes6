@@ -34,7 +34,6 @@ namespace styleinbanknotes
         {
 
             telacc frm = new telacc();
-
             frm.ShowDialog();
 
         }

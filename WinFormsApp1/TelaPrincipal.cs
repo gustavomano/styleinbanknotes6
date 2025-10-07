@@ -100,7 +100,12 @@ namespace styleinbanknotes
             }
         }
         private void pictureBox3_Click(object sender, EventArgs e)
-        {        }
+        {       
+        frmcliente frmcliente = new frmcliente();
+            frmcliente.ShowDialog();
+            this.Close();
+        
+        }
         private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProdutos.Columns[e.ColumnIndex].Name == "Adicionar")

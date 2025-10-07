@@ -13,7 +13,6 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using WinFormsApp1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 using styleinbanknotes;
 
 namespace WinFormsApp1
@@ -58,7 +57,6 @@ namespace WinFormsApp1
                 try
                 {
                     cnn.Open();
-
 
                     string sqlVerifica = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email";
                     using (SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, cnn))

@@ -63,6 +63,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(134, 172);
@@ -75,6 +76,9 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.BackColor = Color.Chocolate;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox3.BorderStyle = BorderStyle.FixedSingle;
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(649, 172);

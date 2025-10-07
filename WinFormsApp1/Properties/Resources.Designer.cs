@@ -93,6 +93,16 @@ namespace styleinbanknotes.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap avatar_padrao {
+            get {
+                object obj = ResourceManager.GetObject("avatar_padrao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Captura_de_tela_2024_10_16_115411 {
             get {
                 object obj = ResourceManager.GetObject("Captura de tela 2024-10-16 115411", resourceCulture);
@@ -126,6 +136,16 @@ namespace styleinbanknotes.Properties {
         internal static System.Drawing.Bitmap Design_sem_nome__1_ {
             get {
                 object obj = ResourceManager.GetObject("Design sem nome (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_cv4k2pcv4k2pcv4k_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_cv4k2pcv4k2pcv4k-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,6 +246,16 @@ namespace styleinbanknotes.Properties {
         internal static System.Drawing.Bitmap telalogin1 {
             get {
                 object obj = ResourceManager.GetObject("telalogin1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap telavermelha {
+            get {
+                object obj = ResourceManager.GetObject("telavermelha", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
