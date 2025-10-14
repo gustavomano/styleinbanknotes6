@@ -1,6 +1,6 @@
 ﻿namespace styleinbanknotes
 {
-    partial class FormCarrinho
+    partial class frmCarrinho
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCarrinho));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCarrinho));
             dgvCarrinho = new DataGridView();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -57,6 +57,7 @@
             pictureBox1.Size = new Size(947, 507);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += this.pictureBox1_Click;
             // 
             // pictureBox2
             // 
@@ -80,7 +81,7 @@
             buttonFinalizar.UseVisualStyleBackColor = false;
             buttonFinalizar.Click += button1_Click;
             // 
-            // FormCarrinho
+            // frmCarrinho
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -89,7 +90,7 @@
             Controls.Add(dgvCarrinho);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Name = "FormCarrinho";
+            Name = "frmCarrinho";
             Text = "FormCarrinho";
             Load += FormCarrinho_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCarrinho).EndInit();

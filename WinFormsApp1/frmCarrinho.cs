@@ -13,35 +13,56 @@ namespace styleinbanknotes
 {
 
 
-    public partial class FormCarrinho : Form
+    public partial class frmCarrinho : Form
     {
-
-        string connectionString = "Server=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
-        string connString = "Data Source=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
-        public FormCarrinho(List<DataRow> itens)
+        public frmCarrinho(List<ItemCarrinho> carrinho)
         {
             InitializeComponent();
-
-
-            DataTable dt = itens[0].Table.Clone();
-            foreach (DataRow r in itens)
-            {
-                dt.ImportRow(r);
-            }
-
-            dgvCarrinho.DataSource = dt;
-            dgvCarrinho.Columns["Id"].Visible = false;
-            dgvCarrinho.Columns["Nome"].Width = 200;
-            dgvCarrinho.Columns["Preco"].DefaultCellStyle.Format = "C2";
+            this.itensNoCarrinho = carrinho;
         }
+        private List<ItemCarrinho> itensNoCarrinho;
+        string connectionString = "Server=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
+        string connString = "Data Source=sqlexpress;Database=cj3022129pr2;User Id=aluno;Password=aluno;";
+        
         private void FormCarrinho_Load(object sender, EventArgs e)
         {
-
+            dgvCarrinho.AutoGenerateColumns = false;
+            AtualizarGridECalcularTotal();
         }
+       
+        private void AtualizarGridECalcularTotal()
+        {
+            // Limpa o grid e o preenche novamente com os dados atualizados
+            dgvCarrinho.DataSource = null;
+            dgvCarrinho.DataSource = itensNoCarrinho;
 
+            // Calcula o valor total
+            decimal total = 0;
+            foreach (var item in itensNoCarrinho)
+            {
+                total += item.Subtotal;
+            }
+
+            // Atualiza o Label do valor total
+           // lblValorTotal.Text = $"Total: {total:C}"; // O formato "C" é para moeda (R$)
+        }
         private void dgvCarrinho_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Verifica se o clique foi na coluna de botão "Remover"
+            // (Supondo que o nome da sua coluna de botão é 'colRemover')
+            if (e.ColumnIndex == dgvCarrinho.Columns["colRemover"].Index && e.RowIndex >= 0)
+            {
+                // Pega o ID do produto da linha que foi clicada
+                int idProdutoParaRemover = (int)dgvCarrinho.Rows[e.RowIndex].Cells["colIdProduto"].Value;
 
+                // Encontra e remove o item da lista
+                var itemParaRemover = itensNoCarrinho.FirstOrDefault(item => item.IdProduto == idProdutoParaRemover);
+                if (itemParaRemover != null)
+                {
+                    itensNoCarrinho.Remove(itemParaRemover);
+                    AtualizarGridECalcularTotal(); // Atualiza a tela
+                }
+            }
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -68,16 +89,16 @@ namespace styleinbanknotes
 
                     if (reader.Read())
                     {
-                       
+
                         if (reader["endereco"] == DBNull.Value || string.IsNullOrWhiteSpace(reader["endereco"].ToString()))
                         {
-                           
+
                             FormAtualizarEndereco frmEndereco = new FormAtualizarEndereco();
                             frmEndereco.ShowDialog();
                         }
                         else
                         {
-                           
+
                         }
                     }
                 }
@@ -115,7 +136,7 @@ namespace styleinbanknotes
                         cmdEstoque.Parameters.AddWithValue("@Id", produtoId);
                         cmdEstoque.ExecuteNonQuery();
                     }
-                   
+
                     tran.Commit();
                     MessageBox.Show("Pedido finalizado com sucesso!");
                 }
@@ -128,4 +149,5 @@ namespace styleinbanknotes
         }
     }
 }
+
 

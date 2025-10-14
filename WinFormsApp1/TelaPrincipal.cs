@@ -100,16 +100,46 @@ namespace styleinbanknotes
             }
         }
         private void pictureBox3_Click(object sender, EventArgs e)
-        {       
-        frmcliente frmcliente = new frmcliente();
+        {
+            frmcliente frmcliente = new frmcliente();
             frmcliente.ShowDialog();
             this.Close();
-        
+
         }
         private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProdutos.Columns[e.ColumnIndex].Name == "Adicionar")
             {
+                int id = Convert.ToInt32(dgvProdutos.CurrentRow.Cells["Id"].Value);
+                string nome = dgvProdutos.CurrentRow.Cells["Nome"].Value.ToString();
+                decimal preco = Convert.ToDecimal(dgvProdutos.CurrentRow.Cells["Preco"].Value);
+
+                // 2. Crie uma nova instância do nosso item de carrinho
+                ItemCarrinho novoItem = new ItemCarrinho
+                {
+                    IdProduto = id,
+                    Nome = nome,
+                    PrecoUnitario = preco,
+                    Quantidade = 1 // Começa com quantidade 1
+                };
+
+                // 3. Verifique se o item JÁ ESTÁ no carrinho
+                // (para não adicionar duplicado, apenas aumentar a quantidade)
+                // Assumindo que 'meuCarrinho' é sua List<ItemCarrinho>
+                // var itemExistente = meuCarrinho.FirstOrDefault(item => item.IdProduto == novoItem.IdProduto);
+
+                //if (itemExistente != null)
+                //{
+                //    // Se já existe, apenas aumenta a quantidade
+                //    itemExistente.Quantidade++;
+                //}
+                //else
+                //{
+                // Se não existe, adiciona o novo item à lista
+                //meuCarrinho.Add(novoItem);
+                // }
+
+                MessageBox.Show($"{nome} foi adicionado ao carrinho!");
                 DataRowView rowView = (DataRowView)dgvProdutos.Rows[e.RowIndex].DataBoundItem;
                 DataRow row = rowView.Row;
 
@@ -125,21 +155,24 @@ namespace styleinbanknotes
                 MessageBox.Show("Carrinho vazio!");
                 return;
             }
-            FormCarrinho f = new FormCarrinho(itensCarrinho);
-            f.ShowDialog();
-            f.Close();
-        }
-        private void carrinho_Click(object sender, EventArgs e)
-        {
-            if (itensCarrinho.Count == 0)
-            {
-                MessageBox.Show("Carrinho vazio!");
-                return;
-            }
-            FormCarrinho f = new FormCarrinho(itensCarrinho);
-            f.ShowDialog();
-            f.Close();
+            //    frmCarrinho f = new frmCarrinho(itensCarrinho);
+            //    f.ShowDialog();
+            //    f.Close();
+            //}
+            //private void carrinho_Click(object sender, EventArgs e)
+            //{
+            //    if (itensCarrinho.Count == 0)
+            //    {
+            //        MessageBox.Show("Carrinho vazio!");
+            //        return;
+            //    }
+            //    frmCarrinho f = new frmCarrinho(itensCarrinho);
+            //    f.ShowDialog();
+            //    f.Close();
+            //}
+            //  }
+            //}
+
         }
     }
 }
-

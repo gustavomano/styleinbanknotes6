@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            fotoPerfil = new PictureBox();
-            button1 = new Button();
+            picFotoPerfil = new PictureBox();
+            btnAlterarFoto = new Button();
             Dados_Pessoais = new TabControl();
             tabPage1 = new TabPage();
-            btnSalvarDados = new Button();
             txtEmail = new TextBox();
             txtNome = new TextBox();
-            label3 = new Label();
-            label2 = new Label();
+            btnSalvarDados = new Label();
             label1 = new Label();
             Histórico = new TabPage();
             btnGerarPdf = new Button();
@@ -49,7 +47,8 @@
             txtConfirmarSenha = new TextBox();
             txtNovaSenha = new TextBox();
             txtSenhaAtual = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)fotoPerfil).BeginInit();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)picFotoPerfil).BeginInit();
             Dados_Pessoais.SuspendLayout();
             tabPage1.SuspendLayout();
             Histórico.SuspendLayout();
@@ -57,29 +56,29 @@
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
-            // fotoPerfil
+            // picFotoPerfil
             // 
-            fotoPerfil.BorderStyle = BorderStyle.FixedSingle;
-            fotoPerfil.Image = Properties.Resources.avatar_padrao;
-            fotoPerfil.Location = new Point(52, 35);
-            fotoPerfil.Name = "fotoPerfil";
-            fotoPerfil.Size = new Size(125, 125);
-            fotoPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-            fotoPerfil.TabIndex = 0;
-            fotoPerfil.TabStop = false;
+            picFotoPerfil.BorderStyle = BorderStyle.FixedSingle;
+            picFotoPerfil.Image = Properties.Resources.avatar_padrao;
+            picFotoPerfil.Location = new Point(65, 85);
+            picFotoPerfil.Name = "picFotoPerfil";
+            picFotoPerfil.Size = new Size(125, 125);
+            picFotoPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+            picFotoPerfil.TabIndex = 0;
+            picFotoPerfil.TabStop = false;
             // 
-            // button1
+            // btnAlterarFoto
             // 
-            button1.BackColor = Color.FromArgb(171, 0, 8);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI", 7F);
-            button1.Location = new Point(96, 179);
-            button1.Name = "button1";
-            button1.Size = new Size(81, 22);
-            button1.TabIndex = 2;
-            button1.Text = "ALTERAR FOTO";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnAlterarFoto.BackColor = Color.FromArgb(171, 0, 8);
+            btnAlterarFoto.FlatStyle = FlatStyle.Popup;
+            btnAlterarFoto.Font = new Font("Impact", 11F);
+            btnAlterarFoto.Location = new Point(65, 216);
+            btnAlterarFoto.Name = "btnAlterarFoto";
+            btnAlterarFoto.Size = new Size(125, 27);
+            btnAlterarFoto.TabIndex = 2;
+            btnAlterarFoto.Text = "ALTERAR FOTO";
+            btnAlterarFoto.UseVisualStyleBackColor = false;
+            btnAlterarFoto.Click += button1_Click;
             // 
             // Dados_Pessoais
             // 
@@ -95,29 +94,20 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(171, 0, 8);
-            tabPage1.Controls.Add(btnSalvarDados);
+            tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(txtEmail);
             tabPage1.Controls.Add(txtNome);
-            tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(label2);
+            tabPage1.Controls.Add(btnSalvarDados);
             tabPage1.Controls.Add(label1);
-            tabPage1.Controls.Add(fotoPerfil);
-            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(picFotoPerfil);
+            tabPage1.Controls.Add(btnAlterarFoto);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(792, 434);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Dados Pessoais";
-            // 
-            // btnSalvarDados
-            // 
-            btnSalvarDados.Location = new Point(491, 327);
-            btnSalvarDados.Name = "btnSalvarDados";
-            btnSalvarDados.Size = new Size(75, 23);
-            btnSalvarDados.TabIndex = 4;
-            btnSalvarDados.Text = "button3";
-            btnSalvarDados.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click_1;
             // 
             // txtEmail
             // 
@@ -125,6 +115,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(125, 23);
             txtEmail.TabIndex = 7;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtNome
             // 
@@ -134,23 +125,18 @@
             txtNome.TabIndex = 6;
             txtNome.TextChanged += txtNome_TextChanged;
             // 
-            // label3
+            // btnSalvarDados
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(453, 276);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 5;
-            label3.Text = "label3";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(427, 158);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 4;
-            label2.Text = "label2";
+            btnSalvarDados.AutoSize = true;
+            btnSalvarDados.Cursor = Cursors.Hand;
+            btnSalvarDados.Font = new Font("Impact", 14F, FontStyle.Underline);
+            btnSalvarDados.ForeColor = SystemColors.ButtonHighlight;
+            btnSalvarDados.Location = new Point(127, 362);
+            btnSalvarDados.Name = "btnSalvarDados";
+            btnSalvarDados.Size = new Size(156, 23);
+            btnSalvarDados.TabIndex = 4;
+            btnSalvarDados.Text = "SALVAR ALTERAÇÕES";
+            btnSalvarDados.Click += btnSalvarDados_Click;
             // 
             // label1
             // 
@@ -192,6 +178,7 @@
             dgvHistorico.Name = "dgvHistorico";
             dgvHistorico.Size = new Size(427, 150);
             dgvHistorico.TabIndex = 0;
+            dgvHistorico.CellContentClick += dgvHistorico_CellContentClick;
             // 
             // IDcompra
             // 
@@ -257,6 +244,17 @@
             txtSenhaAtual.Size = new Size(100, 23);
             txtSenhaAtual.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Impact", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(299, 152);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 23);
+            label2.TabIndex = 8;
+            label2.Text = "EMAIL";
+            // 
             // frmcliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -265,7 +263,8 @@
             Controls.Add(Dados_Pessoais);
             Name = "frmcliente";
             Text = "frmcliente";
-            ((System.ComponentModel.ISupportInitialize)fotoPerfil).EndInit();
+            Load += frmcliente_Load;
+            ((System.ComponentModel.ISupportInitialize)picFotoPerfil).EndInit();
             Dados_Pessoais.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
@@ -278,16 +277,15 @@
 
         #endregion
 
-        private PictureBox fotoPerfil;
-        private Button button1;
+        private PictureBox picFotoPerfil;
+        private Button btnAlterarFoto;
         private TabControl Dados_Pessoais;
         private TabPage tabPage1;
         private TabPage Histórico;
         private TabPage tabPage3;
         private TextBox txtEmail;
         private TextBox txtNome;
-        private Label label3;
-        private Label label2;
+        private Label btnSalvarDados;
         private Label label1;
         private DataGridView dgvHistorico;
         private Button btnGerarPdf;
@@ -298,6 +296,6 @@
         private TextBox txtConfirmarSenha;
         private TextBox txtNovaSenha;
         private TextBox txtSenhaAtual;
-        private Button btnSalvarDados;
+        private Label label2;
     }
 }

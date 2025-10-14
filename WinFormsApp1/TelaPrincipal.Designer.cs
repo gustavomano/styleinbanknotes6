@@ -35,6 +35,11 @@
             txtPesquisa = new TextBox();
             btnBuscar = new PictureBox();
             dgvProdutos = new DataGridView();
+            Nome = new DataGridViewTextBoxColumn();
+            PrecoUnitario = new DataGridViewTextBoxColumn();
+            Quantidade = new DataGridViewTextBoxColumn();
+            Subtotal = new DataGridViewTextBoxColumn();
+            colRemover = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carrinho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -104,6 +109,7 @@
             // 
             dgvProdutos.BackgroundColor = Color.FromArgb(171, 0, 8);
             dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProdutos.Columns.AddRange(new DataGridViewColumn[] { Nome, PrecoUnitario, Quantidade, Subtotal, colRemover });
             dgvProdutos.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvProdutos.GridColor = SystemColors.InfoText;
             dgvProdutos.ImeMode = ImeMode.Off;
@@ -112,6 +118,41 @@
             dgvProdutos.Size = new Size(603, 136);
             dgvProdutos.TabIndex = 5;
             dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
+            // 
+            // Nome
+            // 
+            Nome.DataPropertyName = "Nome";
+            Nome.HeaderText = "Nome";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            // 
+            // PrecoUnitario
+            // 
+            PrecoUnitario.DataPropertyName = "PrecoUnitario";
+            PrecoUnitario.HeaderText = "Preço";
+            PrecoUnitario.Name = "PrecoUnitario";
+            PrecoUnitario.ReadOnly = true;
+            // 
+            // Quantidade
+            // 
+            Quantidade.DataPropertyName = "Quantidade";
+            Quantidade.HeaderText = "Quantidade";
+            Quantidade.Name = "Quantidade";
+            Quantidade.ReadOnly = true;
+            // 
+            // Subtotal
+            // 
+            Subtotal.DataPropertyName = "Subtotal";
+            Subtotal.HeaderText = "Subtotal";
+            Subtotal.Name = "Subtotal";
+            Subtotal.ReadOnly = true;
+            // 
+            // colRemover
+            // 
+            colRemover.DataPropertyName = "colRemover";
+            colRemover.HeaderText = "Remover";
+            colRemover.Name = "colRemover";
+            colRemover.ReadOnly = true;
             // 
             // TelaPrincipal
             // 
@@ -144,5 +185,10 @@
         private TextBox txtPesquisa;
         private PictureBox btnBuscar;
         protected internal DataGridView dgvProdutos;
+        private DataGridViewTextBoxColumn Nome;
+        private DataGridViewTextBoxColumn PrecoUnitario;
+        private DataGridViewTextBoxColumn Quantidade;
+        private DataGridViewTextBoxColumn Subtotal;
+        private DataGridViewTextBoxColumn colRemover;
     }
 }
