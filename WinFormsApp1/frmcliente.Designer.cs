@@ -28,26 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             picFotoPerfil = new PictureBox();
             btnAlterarFoto = new Button();
             Dados_Pessoais = new TabControl();
             tabPage1 = new TabPage();
+            label2 = new Label();
             txtEmail = new TextBox();
             txtNome = new TextBox();
             btnSalvarDados = new Label();
             label1 = new Label();
             Histórico = new TabPage();
-            btnGerarPdf = new Button();
+            label3 = new Label();
+            btnGerarPDF = new Button();
             dgvHistorico = new DataGridView();
-            IDcompra = new DataGridViewTextBoxColumn();
+            PedidoId = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             DATA = new DataGridViewTextBoxColumn();
-            VALOR = new DataGridViewTextBoxColumn();
+            ValorTotal = new DataGridViewTextBoxColumn();
             tabPage3 = new TabPage();
             btnAlterarSenha = new Button();
             txtConfirmarSenha = new TextBox();
             txtNovaSenha = new TextBox();
             txtSenhaAtual = new TextBox();
-            label2 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)picFotoPerfil).BeginInit();
             Dados_Pessoais.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -109,6 +115,17 @@
             tabPage1.Text = "Dados Pessoais";
             tabPage1.Click += tabPage1_Click_1;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Impact", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(299, 152);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 23);
+            label2.TabIndex = 8;
+            label2.Text = "EMAIL";
+            // 
             // txtEmail
             // 
             txtEmail.Location = new Point(299, 178);
@@ -152,7 +169,8 @@
             // Histórico
             // 
             Histórico.BackColor = SystemColors.WindowFrame;
-            Histórico.Controls.Add(btnGerarPdf);
+            Histórico.Controls.Add(label3);
+            Histórico.Controls.Add(btnGerarPDF);
             Histórico.Controls.Add(dgvHistorico);
             Histórico.Location = new Point(4, 24);
             Histórico.Name = "Histórico";
@@ -161,47 +179,76 @@
             Histórico.TabIndex = 1;
             Histórico.Text = "Histórico de compra";
             // 
-            // btnGerarPdf
+            // label3
             // 
-            btnGerarPdf.Location = new Point(528, 311);
-            btnGerarPdf.Name = "btnGerarPdf";
-            btnGerarPdf.Size = new Size(168, 24);
-            btnGerarPdf.TabIndex = 4;
-            btnGerarPdf.Text = "VER DETALHES/GERAR PDF";
-            btnGerarPdf.UseVisualStyleBackColor = true;
+            label3.AutoSize = true;
+            label3.Location = new Point(265, 66);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 15);
+            label3.TabIndex = 4;
+            // 
+            // btnGerarPDF
+            // 
+            btnGerarPDF.Location = new Point(345, 301);
+            btnGerarPDF.Name = "btnGerarPDF";
+            btnGerarPDF.Size = new Size(168, 24);
+            btnGerarPDF.TabIndex = 4;
+            btnGerarPDF.Text = "VER DETALHES/GERAR PDF";
+            btnGerarPDF.UseVisualStyleBackColor = true;
+            btnGerarPDF.Click += btnGerarPDF_Click;
             // 
             // dgvHistorico
             // 
             dgvHistorico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHistorico.Columns.AddRange(new DataGridViewColumn[] { IDcompra, DATA, VALOR });
-            dgvHistorico.Location = new Point(134, 113);
+            dgvHistorico.Columns.AddRange(new DataGridViewColumn[] { PedidoId, Status, DATA, ValorTotal });
+            dgvHistorico.Location = new Point(86, 106);
             dgvHistorico.Name = "dgvHistorico";
+            dgvHistorico.ReadOnly = true;
+            dgvHistorico.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHistorico.Size = new Size(427, 150);
             dgvHistorico.TabIndex = 0;
             dgvHistorico.CellContentClick += dgvHistorico_CellContentClick;
             // 
-            // IDcompra
+            // PedidoId
             // 
-            IDcompra.FillWeight = 25F;
-            IDcompra.HeaderText = "ID DA COMPRA";
-            IDcompra.Name = "IDcompra";
-            IDcompra.Width = 125;
+            PedidoId.DataPropertyName = "PedidoId";
+            PedidoId.FillWeight = 25F;
+            PedidoId.HeaderText = "ID DA COMPRA";
+            PedidoId.Name = "PedidoId";
+            PedidoId.ReadOnly = true;
+            PedidoId.Width = 125;
+            // 
+            // Status
+            // 
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
             // 
             // DATA
             // 
+            DATA.DataPropertyName = "DataPedido";
             DATA.HeaderText = "DATA";
             DATA.Name = "DATA";
+            DATA.ReadOnly = true;
             // 
-            // VALOR
+            // ValorTotal
             // 
-            VALOR.FillWeight = 25F;
-            VALOR.HeaderText = "VALOR TOTAL";
-            VALOR.Name = "VALOR";
-            VALOR.Width = 125;
+            ValorTotal.DataPropertyName = "ValorTotal";
+            dataGridViewCellStyle2.Format = "c";
+            ValorTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            ValorTotal.FillWeight = 25F;
+            ValorTotal.HeaderText = "VALOR TOTAL";
+            ValorTotal.Name = "ValorTotal";
+            ValorTotal.ReadOnly = true;
+            ValorTotal.Width = 125;
             // 
             // tabPage3
             // 
             tabPage3.BackColor = SystemColors.WindowFrame;
+            tabPage3.Controls.Add(label6);
+            tabPage3.Controls.Add(label5);
+            tabPage3.Controls.Add(label4);
             tabPage3.Controls.Add(btnAlterarSenha);
             tabPage3.Controls.Add(txtConfirmarSenha);
             tabPage3.Controls.Add(txtNovaSenha);
@@ -216,44 +263,62 @@
             // 
             // btnAlterarSenha
             // 
-            btnAlterarSenha.Location = new Point(580, 277);
+            btnAlterarSenha.Location = new Point(261, 212);
             btnAlterarSenha.Name = "btnAlterarSenha";
-            btnAlterarSenha.Size = new Size(75, 23);
+            btnAlterarSenha.Size = new Size(109, 23);
             btnAlterarSenha.TabIndex = 3;
-            btnAlterarSenha.Text = "button2";
+            btnAlterarSenha.Text = "ALTERAR SENHA";
             btnAlterarSenha.UseVisualStyleBackColor = true;
+            btnAlterarSenha.Click += btnAlterarSenha_Click;
             // 
             // txtConfirmarSenha
             // 
-            txtConfirmarSenha.Location = new Point(357, 194);
+            txtConfirmarSenha.Location = new Point(203, 120);
             txtConfirmarSenha.Name = "txtConfirmarSenha";
             txtConfirmarSenha.Size = new Size(100, 23);
             txtConfirmarSenha.TabIndex = 2;
             // 
             // txtNovaSenha
             // 
-            txtNovaSenha.Location = new Point(314, 119);
+            txtNovaSenha.Location = new Point(203, 87);
             txtNovaSenha.Name = "txtNovaSenha";
             txtNovaSenha.Size = new Size(100, 23);
             txtNovaSenha.TabIndex = 1;
             // 
             // txtSenhaAtual
             // 
-            txtSenhaAtual.Location = new Point(353, 64);
+            txtSenhaAtual.Location = new Point(203, 55);
             txtSenhaAtual.Name = "txtSenhaAtual";
             txtSenhaAtual.Size = new Size(100, 23);
             txtSenhaAtual.TabIndex = 0;
             // 
-            // label2
+            // label4
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Impact", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(299, 152);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 23);
-            label2.TabIndex = 8;
-            label2.Text = "EMAIL";
+            label4.AutoSize = true;
+            label4.ForeColor = SystemColors.ButtonHighlight;
+            label4.Location = new Point(113, 58);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 15);
+            label4.TabIndex = 4;
+            label4.Text = "SENHA ATUAL";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(113, 90);
+            label5.Name = "label5";
+            label5.Size = new Size(80, 15);
+            label5.TabIndex = 4;
+            label5.Text = "SENHA NOVA";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(77, 123);
+            label6.Name = "label6";
+            label6.Size = new Size(116, 15);
+            label6.TabIndex = 4;
+            label6.Text = "CONFIRMAR SENHA";
             // 
             // frmcliente
             // 
@@ -269,6 +334,7 @@
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             Histórico.ResumeLayout(false);
+            Histórico.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHistorico).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
@@ -288,14 +354,19 @@
         private Label btnSalvarDados;
         private Label label1;
         private DataGridView dgvHistorico;
-        private Button btnGerarPdf;
-        private DataGridViewTextBoxColumn IDcompra;
-        private DataGridViewTextBoxColumn DATA;
-        private DataGridViewTextBoxColumn VALOR;
+        private Button btnGerarPDF;
         private Button btnAlterarSenha;
         private TextBox txtConfirmarSenha;
         private TextBox txtNovaSenha;
         private TextBox txtSenhaAtual;
         private Label label2;
+        private Label label3;
+        private DataGridViewTextBoxColumn PedidoId;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn DATA;
+        private DataGridViewTextBoxColumn ValorTotal;
+        private Label label5;
+        private Label label4;
+        private Label label6;
     }
 }

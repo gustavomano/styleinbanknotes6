@@ -35,16 +35,13 @@
             txtPesquisa = new TextBox();
             btnBuscar = new PictureBox();
             dgvProdutos = new DataGridView();
-            Nome = new DataGridViewTextBoxColumn();
-            PrecoUnitario = new DataGridViewTextBoxColumn();
-            Quantidade = new DataGridViewTextBoxColumn();
-            Subtotal = new DataGridViewTextBoxColumn();
-            colRemover = new DataGridViewTextBoxColumn();
+            pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carrinho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -60,15 +57,13 @@
             // 
             // carrinho
             // 
-            carrinho.Cursor = Cursors.Hand;
             carrinho.Image = (Image)resources.GetObject("carrinho.Image");
-            carrinho.Location = new Point(1705, 33);
+            carrinho.Location = new Point(12, 33);
             carrinho.Name = "carrinho";
-            carrinho.Size = new Size(77, 63);
+            carrinho.Size = new Size(100, 50);
             carrinho.SizeMode = PictureBoxSizeMode.CenterImage;
-            carrinho.TabIndex = 1;
+            carrinho.TabIndex = 6;
             carrinho.TabStop = false;
-            carrinho.Click += carrinho_Click;
             // 
             // pictureBox3
             // 
@@ -109,7 +104,6 @@
             // 
             dgvProdutos.BackgroundColor = Color.FromArgb(171, 0, 8);
             dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProdutos.Columns.AddRange(new DataGridViewColumn[] { Nome, PrecoUnitario, Quantidade, Subtotal, colRemover });
             dgvProdutos.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvProdutos.GridColor = SystemColors.InfoText;
             dgvProdutos.ImeMode = ImeMode.Off;
@@ -119,46 +113,23 @@
             dgvProdutos.TabIndex = 5;
             dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
             // 
-            // Nome
+            // pictureBox2
             // 
-            Nome.DataPropertyName = "Nome";
-            Nome.HeaderText = "Nome";
-            Nome.Name = "Nome";
-            Nome.ReadOnly = true;
-            // 
-            // PrecoUnitario
-            // 
-            PrecoUnitario.DataPropertyName = "PrecoUnitario";
-            PrecoUnitario.HeaderText = "Preço";
-            PrecoUnitario.Name = "PrecoUnitario";
-            PrecoUnitario.ReadOnly = true;
-            // 
-            // Quantidade
-            // 
-            Quantidade.DataPropertyName = "Quantidade";
-            Quantidade.HeaderText = "Quantidade";
-            Quantidade.Name = "Quantidade";
-            Quantidade.ReadOnly = true;
-            // 
-            // Subtotal
-            // 
-            Subtotal.DataPropertyName = "Subtotal";
-            Subtotal.HeaderText = "Subtotal";
-            Subtotal.Name = "Subtotal";
-            Subtotal.ReadOnly = true;
-            // 
-            // colRemover
-            // 
-            colRemover.DataPropertyName = "colRemover";
-            colRemover.HeaderText = "Remover";
-            colRemover.Name = "colRemover";
-            colRemover.ReadOnly = true;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(1725, 33);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(68, 74);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1899, 704);
+            Controls.Add(pictureBox2);
             Controls.Add(dgvProdutos);
             Controls.Add(btnBuscar);
             Controls.Add(txtPesquisa);
@@ -168,11 +139,13 @@
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaPrincipal";
+            Load += TelaPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)carrinho).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,10 +158,6 @@
         private TextBox txtPesquisa;
         private PictureBox btnBuscar;
         protected internal DataGridView dgvProdutos;
-        private DataGridViewTextBoxColumn Nome;
-        private DataGridViewTextBoxColumn PrecoUnitario;
-        private DataGridViewTextBoxColumn Quantidade;
-        private DataGridViewTextBoxColumn Subtotal;
-        private DataGridViewTextBoxColumn colRemover;
+        private PictureBox pictureBox2;
     }
 }

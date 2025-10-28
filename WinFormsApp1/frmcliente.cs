@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuestPDF.Infrastructure;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using BCrypt.Net;
 
 namespace styleinbanknotes
 {
@@ -180,24 +184,43 @@ namespace styleinbanknotes
         }
         private void CarregarHistoricoCompras()
         {
-            try
-            {
-                // TODO: Substitua esta simulação pela sua busca real no banco de dados, usando UsuarioLogado.CodCliente
-                // Exemplo: var historico = seuRepositorioDeCompras.ListarPorCliente(UsuarioLogado.CodCliente);
-                var historico = new[] {
-                new { CompraId = 101, Data = new DateTime(2025, 10, 1), ValorTotal = 150.75m },
-                new { CompraId = 105, Data = new DateTime(2025, 10, 5), ValorTotal = 89.90m },
-                new { CompraId = 112, Data = new DateTime(2025, 10, 7), ValorTotal = 240.00m }
-            }.ToList();
+            DataTable dt = new DataTable();
+            // Esta query busca todos os pedidos do cliente e já calcula o valor total
+            // somando os itens de cada pedido.
+            string query = @"
+        SELECT 
+            p.PedidoId, 
+            p.DataPedido, 
+            p.Status,
+            SUM(ip.Quantidade * ip.PrecoUnitario) AS ValorTotal
+        FROM 
+            Pedidos p
+        JOIN 
+            ItensPedido ip ON p.PedidoId = ip.PedidoId
+        WHERE 
+            p.cod_cliente = @id
+        GROUP BY 
+            p.PedidoId, p.DataPedido, p.Status
+        ORDER BY 
+            p.DataPedido DESC";
 
-                dgvHistorico.DataSource = historico;
-                dgvHistorico.Columns["CompraId"].HeaderText = "ID da Compra";
-                dgvHistorico.Columns["Data"].HeaderText = "Data";
-                dgvHistorico.Columns["ValorTotal"].HeaderText = "Valor Total";
-            }
-            catch (Exception ex)
+            using (SqlConnection conn = new SqlConnection(connectionString)) // Use sua string de conexão
             {
-                MessageBox.Show($"Erro ao carregar histórico de compras: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", UsuarioLogado.CodCliente);
+                    try
+                    {
+                        conn.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                        dgvHistorico.DataSource = dt;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao carregar histórico: " + ex.Message);
+                    }
+                }
             }
         }
 
@@ -211,12 +234,12 @@ namespace styleinbanknotes
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void tabPage1_Click_1(object sender, EventArgs e)
@@ -231,7 +254,7 @@ namespace styleinbanknotes
 
         private void frmcliente_Load(object sender, EventArgs e)
         {
-
+            CarregarHistoricoCompras();
             // Define a licença do QuestPDF
             QuestPDF.Settings.License = LicenseType.Community;
 
@@ -339,8 +362,288 @@ namespace styleinbanknotes
                 MessageBox.Show("Nenhuma alteração foi salva.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
+            if (dgvHistorico.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, selecione um pedido na lista para gerar o recibo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 2. Pega o ID do pedido selecionado
+            int pedidoId = Convert.ToInt32(dgvHistorico.CurrentRow.Cells["PedidoId"].Value);
+
+            // 3. Pergunta onde salvar o arquivo
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "Arquivo PDF (*.pdf)|*.pdf",
+                FileName = $"Recibo_Pedido_{pedidoId}.pdf",
+                Title = "Salvar Recibo em PDF"
+            };
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 4. Busca os dados completos do pedido
+                    var dadosRecibo = BuscarDadosCompletosPedido(pedidoId);
+
+                    // 5. Gera o documento PDF
+                    Document.Create(container =>
+                    {
+                        container.Page(page =>
+                        {
+                            page.Size(PageSizes.A4);
+                            page.Margin(2, Unit.Centimetre);
+                            page.DefaultTextStyle(x => x.FontSize(12).FontFamily("Arial"));
+
+                            // Cabeçalho
+                            page.Header()
+                                .AlignCenter()
+                                .Text($"Recibo do Pedido Nº {pedidoId}")
+                                .SemiBold().FontSize(20).FontColor(Colors.Grey.Darken3);
+
+                            // Conteúdo
+                            page.Content()
+                                .PaddingVertical(1, Unit.Centimetre)
+                                .Column(col =>
+                                {
+                                    col.Spacing(20);
+
+                                    // Dados do Cliente e Pedido
+                                    col.Item().Row(row =>
+                                    {
+                                        row.RelativeItem().Column(c =>
+                                        {
+                                            c.Item().Text("Dados do Cliente").SemiBold();
+                                            c.Item().Text(dadosRecibo.NomeCliente);
+                                            c.Item().Text(dadosRecibo.EmailCliente);
+                                            c.Item().Text(dadosRecibo.EnderecoCliente);
+                                        });
+                                        row.RelativeItem().Column(c =>
+                                        {
+                                            c.Item().AlignRight().Text("Data do Pedido").SemiBold();
+                                            c.Item().AlignRight().Text($"{dadosRecibo.DataPedido:dd/MM/yyyy}");
+                                            c.Item().AlignRight().Text("Status").SemiBold();
+                                            c.Item().AlignRight().Text(dadosRecibo.Status);
+                                        });
+                                    });
+
+                                    // Linha divisória
+                                    col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
+
+                                    // Tabela de Itens
+                                    col.Item().Table(table =>
+                                    {
+                                        table.ColumnsDefinition(columns =>
+                                        {
+                                            columns.RelativeColumn(3); // Nome do produto
+                                            columns.RelativeColumn(1); // Qtd
+                                            columns.RelativeColumn(1); // Preço Unit.
+                                            columns.RelativeColumn(1); // Subtotal
+                                        });
+
+                                        table.Header(header =>
+                                        {
+                                            header.Cell().Background(Colors.Grey.Lighten3).Padding(5).Text("Produto");
+                                            header.Cell().Background(Colors.Grey.Lighten3).Padding(5).AlignCenter().Text("Qtd.");
+                                            header.Cell().Background(Colors.Grey.Lighten3).Padding(5).AlignRight().Text("Preço Unit.");
+                                            header.Cell().Background(Colors.Grey.Lighten3).Padding(5).AlignRight().Text("Subtotal");
+                                        });
+
+                                        foreach (var item in dadosRecibo.Itens)
+                                        {
+
+                                            table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten3).Padding(5).Text(item.NomeProduto);
+                                            table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten3).Padding(5).AlignCenter().Text(item.Quantidade.ToString());
+                                            table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten3).Padding(5).AlignRight().Text($"{item.PrecoUnitario:C}");
+                                            table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten3).Padding(5).AlignRight().Text($"{item.Subtotal:C}");
+                                        }
+                                    });
+
+                                    // Total
+                                    col.Item().AlignRight().PaddingTop(10).Text($"Valor Total: {dadosRecibo.ValorTotal:C}").SemiBold().FontSize(16);
+                                });
+
+                            // Rodapé
+                            page.Footer()
+                                .AlignCenter()
+                                .Text("Este não é um documento fiscal. Válido apenas como comprovante.");
+                        });
+                    })
+                    .GeneratePdf(saveDialog.FileName); // Salva o arquivo
+
+                    MessageBox.Show("Recibo em PDF gerado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao gerar PDF: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        public class ItemRecibo
+        {
+            public string NomeProduto { get; set; }
+            public int Quantidade { get; set; }
+            public decimal PrecoUnitario { get; set; }
+            public decimal Subtotal => Quantidade * PrecoUnitario;
+        }
+
+        // Armazena todos os dados do recibo
+        public class DadosRecibo
+        {
+            public int PedidoId { get; set; }
+            public DateTime DataPedido { get; set; }
+            public string Status { get; set; }
+            public string NomeCliente { get; set; }
+            public string EmailCliente { get; set; }
+            public string EnderecoCliente { get; set; }
+            public List<ItemRecibo> Itens { get; set; } = new List<ItemRecibo>();
+            public decimal ValorTotal => Itens.Sum(item => item.Subtotal);
+        }
+
+        // Função que busca TODOS os dados de um pedido no banco
+        private DadosRecibo BuscarDadosCompletosPedido(int pedidoId)
+        {
+            var recibo = new DadosRecibo();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Query 1: Busca dados do Pedido e do Cliente
+                string queryPedido = @"
+            SELECT 
+                p.PedidoId, p.DataPedido, p.Status,
+                c.Nome, c.Email, 
+                c.endereco + ', ' + c.num + ' - ' + c.bairro + ', ' + c.cidad + ' - ' + c.sigla_estado AS Endereco
+            FROM Pedidos p
+            JOIN cadastro c ON p.cod_cliente = c.cod_cliente
+            WHERE p.PedidoId = @id";
+
+                using (SqlCommand cmd = new SqlCommand(queryPedido, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", pedidoId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            recibo.PedidoId = (int)reader["PedidoId"];
+                            recibo.DataPedido = (DateTime)reader["DataPedido"];
+                            recibo.Status = reader["Status"].ToString();
+                            recibo.NomeCliente = reader["Nome"].ToString();
+                            recibo.EmailCliente = reader["Email"].ToString();
+                            // Verifica se o endereço é nulo para não dar erro
+                            recibo.EnderecoCliente = reader["Endereco"] == DBNull.Value ? "Endereço não cadastrado" : reader["Endereco"].ToString();
+                        }
+                    }
+                }
+
+                // Query 2: Busca os Itens do Pedido
+                string queryItens = @"
+            SELECT 
+                Produto, Quantidade, PrecoUnitario 
+            FROM ItensPedido 
+            WHERE PedidoId = @id";
+
+                using (SqlCommand cmdItens = new SqlCommand(queryItens, conn))
+                {
+                    cmdItens.Parameters.AddWithValue("@id", pedidoId);
+                    using (SqlDataReader reader = cmdItens.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // --- AQUI ESTÁ A CORREÇÃO PRINCIPAL ---
+                            // Verificamos se os valores são DBNull antes de convertê-los
+                            recibo.Itens.Add(new ItemRecibo
+                            {
+                                NomeProduto = reader["Produto"] == DBNull.Value ? "Produto indisponível" : reader["Produto"].ToString(),
+                                Quantidade = reader["Quantidade"] == DBNull.Value ? 0 : (int)reader["Quantidade"],
+                                PrecoUnitario = reader["PrecoUnitario"] == DBNull.Value ? 0m : (decimal)reader["PrecoUnitario"]
+                            });
+                        }
+                    }
+                }
+            }
+            return recibo;
+        }
+
+        private void btnAlterarSenha_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSenhaAtual.Text) ||
+        string.IsNullOrWhiteSpace(txtNovaSenha.Text) ||
+        string.IsNullOrWhiteSpace(txtConfirmarSenha.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txtNovaSenha.Text != txtConfirmarSenha.Text)
+            {
+                MessageBox.Show("A nova senha e a confirmação não são iguais.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                string hashSenhaAtualDoBanco = "";
+                // 2. Busca o hash da senha atual no banco de dados
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // TODO: Confirme se o nome da sua coluna de senha é 'Senha'
+                    string query = "SELECT Senha FROM cadastro WHERE cod_cliente = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", UsuarioLogado.CodCliente);
+                        conn.Open();
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            hashSenhaAtualDoBanco = result.ToString();
+                        }
+                    }
+                }
+
+                // 3. Verifica se a senha atual informada está correta
+                if (string.IsNullOrEmpty(hashSenhaAtualDoBanco) || !BCrypt.Net.BCrypt.Verify(txtSenhaAtual.Text, hashSenhaAtualDoBanco))
+                {
+                    MessageBox.Show("A senha atual informada está incorreta.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4. Se chegou aqui, a senha atual está correta. Gera o novo hash.
+                string novoHash = BCrypt.Net.BCrypt.HashPassword(txtNovaSenha.Text);
+                // 5. Salva o novo hash no banco
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE cadastro SET Senha = @novoHash WHERE cod_cliente = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@novoHash", novoHash);
+                        cmd.Parameters.AddWithValue("@id", UsuarioLogado.CodCliente);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Senha alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpa os campos
+                txtSenhaAtual.Clear();
+                txtNovaSenha.Clear();
+                txtConfirmarSenha.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao alterar a senha: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
+
+
+
 
 
 

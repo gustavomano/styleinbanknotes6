@@ -193,6 +193,16 @@ namespace styleinbanknotes.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap projeto__1_ {
+            get {
+                object obj = ResourceManager.GetObject("projeto (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap projeto__2_ {
             get {
                 object obj = ResourceManager.GetObject("projeto (2)", resourceCulture);

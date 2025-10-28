@@ -50,28 +50,32 @@ namespace styleinbanknotes
 
                 if (tokenSalvo)
                 {
-                    var emailService = new EmailService();
+                    EmailService emailService = new EmailService();
                     string assunto = "Código de Redefinição de Senha";
-                    string corpo = $"Olá!\n\nSeu código para redefinir a senha é: {token}\n\nEste código é válido por 15 minutos.\n\nSe você não solicitou isso, ignore este e-mail.";
+                    string corpo = $"Olá!\n\nSeu código para redefinir a senha é: {token}\n\nEste código é válido por 15 minutos. Ignore este e-mail se você não solicitou.";
 
-                    bool emailEnviado = await emailService.EnviarEmailAsync(email, assunto, corpo);
+                    // --- AQUI ESTÁ A CORREÇÃO ---
+                    // Recebemos os dois valores (a tupla) que o método retorna
+                    var (emailEnviado, erroMsg) = await emailService.EnviarEmailAsync(email, assunto, corpo);
 
                     if (emailEnviado)
                     {
                         MessageBox.Show("Um código de verificação foi enviado para o seu e-mail.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Supondo que você precise passar o e-mail para a próxima tela
                         frmRedefinirSenha frm = new frmRedefinirSenha(email);
-                        
                         frm.ShowDialog();
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Erro ao enviar o e-mail. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Agora podemos mostrar o erro real que o EmailService nos deu!
+                        MessageBox.Show("Erro ao enviar o e-mail. Tente novamente.\n\nDetalhe do erro: " + erroMsg, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("O e-mail informado não foi encontrado em nosso sistema.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao salvar o token de recuperação no banco.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

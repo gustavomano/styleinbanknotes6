@@ -22,7 +22,7 @@ namespace styleinbanknotes
 
         }
         //ATUALIZA GIT
-        private List<DataRow> itensCarrinho = new List<DataRow>();
+        private List<ItemCarrinho> meuCarrinho = new List<ItemCarrinho>();
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -81,24 +81,28 @@ namespace styleinbanknotes
                         dgvProdutos.Columns.Add(btnCol);
 
                     }
-
-                    //if (!dgvProdutos.Columns.Contains("Ver carrinho"))
-                    //{
-                    //    DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
-                    //    btnCol.Name = "Ver carrinho";
-                    //    btnCol.HeaderText = "Carrinho";
-                    //    btnCol.Text = "ver carrinho";
-                    //    btnCol.UseColumnTextForButtonValue = true;
-                    //    dgvProdutos.Columns.Add(btnCol);
-
-                    //}
                 }
+                
+
+                //if (!dgvProdutos.Columns.Contains("Ver carrinho"))
+                //{
+                //    DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
+                //    btnCol.Name = "Ver carrinho";
+                //    btnCol.HeaderText = "Carrinho";
+                //    btnCol.Text = "ver carrinho";
+                //    btnCol.UseColumnTextForButtonValue = true;
+                //    dgvProdutos.Columns.Add(btnCol);
+
+                //}
+
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao buscar produto: " + ex.Message);
-                }
+                MessageBox.Show("Erro ao buscar produto: " + ex.Message);
             }
         }
+    }
+
+
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             frmcliente frmcliente = new frmcliente();
@@ -108,49 +112,44 @@ namespace styleinbanknotes
         }
         private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+           
+            // 1. Verifica se o clique foi em uma linha válida E na coluna "Adicionar"
             if (e.RowIndex >= 0 && dgvProdutos.Columns[e.ColumnIndex].Name == "Adicionar")
             {
-                int id = Convert.ToInt32(dgvProdutos.CurrentRow.Cells["Id"].Value);
-                string nome = dgvProdutos.CurrentRow.Cells["Nome"].Value.ToString();
-                decimal preco = Convert.ToDecimal(dgvProdutos.CurrentRow.Cells["Preco"].Value);
+                // 2. Pega os dados do produto da linha que foi clicada
+                int id = Convert.ToInt32(dgvProdutos.Rows[e.RowIndex].Cells["Id"].Value);
+                string nome = dgvProdutos.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+                decimal preco = Convert.ToDecimal(dgvProdutos.Rows[e.RowIndex].Cells["Preco"].Value);
 
-                // 2. Crie uma nova instância do nosso item de carrinho
-                ItemCarrinho novoItem = new ItemCarrinho
+                // 3. Verifique se o item JÁ ESTÁ no carrinho "meuCarrinho"
+                var itemExistente = meuCarrinho.FirstOrDefault(item => item.IdProduto == id);
+
+                if (itemExistente != null)
                 {
-                    IdProduto = id,
-                    Nome = nome,
-                    PrecoUnitario = preco,
-                    Quantidade = 1 // Começa com quantidade 1
-                };
+                    // Se já existe, apenas aumenta a quantidade
+                    itemExistente.Quantidade++;
+                    MessageBox.Show($"{nome} teve a quantidade aumentada!");
+                }
+                else
+                {
+                    // Se não existe, cria um novo item e adiciona à lista "meuCarrinho"
+                    ItemCarrinho novoItem = new ItemCarrinho
+                    {
+                        IdProduto = id,
+                        Nome = nome,
+                        PrecoUnitario = preco,
+                        Quantidade = 1 // Começa com quantidade 1
+                    };
+                    meuCarrinho.Add(novoItem);
+                    MessageBox.Show($"{nome} foi adicionado ao carrinho!");
+                }
 
-                // 3. Verifique se o item JÁ ESTÁ no carrinho
-                // (para não adicionar duplicado, apenas aumentar a quantidade)
-                // Assumindo que 'meuCarrinho' é sua List<ItemCarrinho>
-                // var itemExistente = meuCarrinho.FirstOrDefault(item => item.IdProduto == novoItem.IdProduto);
-
-                //if (itemExistente != null)
-                //{
-                //    // Se já existe, apenas aumenta a quantidade
-                //    itemExistente.Quantidade++;
-                //}
-                //else
-                //{
-                // Se não existe, adiciona o novo item à lista
-                //meuCarrinho.Add(novoItem);
-                // }
-
-                MessageBox.Show($"{nome} foi adicionado ao carrinho!");
-                DataRowView rowView = (DataRowView)dgvProdutos.Rows[e.RowIndex].DataBoundItem;
-                DataRow row = rowView.Row;
-
-                itensCarrinho.Add(row);
-
-                MessageBox.Show("Produto adicionado ao carrinho!");
+                // APAGAMOS O CÓDIGO ANTIGO QUE ADICIONAVA O DataRow!
             }
         }
         private void btnCarrinho_Click(object sender, EventArgs e)
         {
-            if (itensCarrinho.Count == 0)
+            if (meuCarrinho.Count == 0)
             {
                 MessageBox.Show("Carrinho vazio!");
                 return;
@@ -172,6 +171,19 @@ namespace styleinbanknotes
             //}
             //  }
             //}
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            frmCarrinho frm = new frmCarrinho(meuCarrinho);
+            frm.ShowDialog();
+
+
+        }
+
+        private void TelaPrincipal_Load(object sender, EventArgs e)
+        {
 
         }
     }
